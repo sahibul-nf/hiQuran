@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/quran/controller/surah_controller.dart';
 import 'package:quran_app/quran/view/widget/surah_item.dart';
+import 'package:quran_app/utils/theme.dart';
 
 class SurahPage extends StatelessWidget {
   SurahPage({Key? key}) : super(key: key);
@@ -11,10 +12,15 @@ class SurahPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff6f7f8),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("Quran"),
+        centerTitle: true,
+      ),
       body: GetX<SurahController>(
         builder: (controller) {
           return ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             children: [
               for (var item in controller.listOfSurah)
                 SurahItem(
