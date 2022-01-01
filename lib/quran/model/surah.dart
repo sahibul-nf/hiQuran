@@ -1,4 +1,3 @@
-
 class SurahEntity {
   int? number;
   int? sequence;
@@ -7,7 +6,12 @@ class SurahEntity {
   RevelationEntity? revelation;
   NameSurahEntity? name;
 
-  SurahEntity({this.number, this.sequence, this.tafsir, this.numberOfVerses, this.name});
+  SurahEntity(
+      {this.number,
+      this.sequence,
+      this.tafsir,
+      this.numberOfVerses,
+      this.name});
 
   factory SurahEntity.fromJson(Map<String, dynamic> json) {
     var surah = SurahEntity();
@@ -25,13 +29,18 @@ class NameSurahEntity {
   String? arab;
   String? id;
   String? en;
-  NameSurahEntity({this.arab, this.id, this.en});
+  String? translationEn;
+  String? translationId;
+  NameSurahEntity(
+      {this.arab, this.id, this.en, this.translationEn, this.translationId});
 
   factory NameSurahEntity.fromJson(Map<String, dynamic> json) {
     return NameSurahEntity(
       arab: json['short'],
       en: json['transliteration']['en'],
       id: json['transliteration']['id'],
+      translationEn: json['translation']['en'],
+      translationId: json['translation']['id'],
     );
   }
 }
