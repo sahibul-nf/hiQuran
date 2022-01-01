@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quran_app/quran/view/surah_detail_page.dart';
 import 'package:quran_app/quran/view/surah_page.dart';
 import 'package:quran_app/utils/theme.dart';
 
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -32,5 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
