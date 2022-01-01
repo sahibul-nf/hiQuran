@@ -36,21 +36,18 @@ class SurahItem extends StatelessWidget {
             flex: 3,
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: ColorPalletes.sapphire.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "$number",
-                        style: AppTextStyle.normal.copyWith(
-                          color: ColorPalletes.sapphire,
-                        ),
+                Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: ColorPalletes.sapphire.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "$number",
+                      style: AppTextStyle.normal.copyWith(
+                        color: ColorPalletes.sapphire,
                       ),
                     ),
                   ),
