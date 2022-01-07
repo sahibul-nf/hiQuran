@@ -23,7 +23,10 @@ class SurahDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sahibul Quran"),
+        title: Text(
+          "SahibulQuran",
+          style: AppTextStyle.bigTitle.copyWith(),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -37,7 +40,6 @@ class SurahDetailPage extends StatelessWidget {
               numberOfVerses: numberOfVerses,
               revelation: "$revelation",
             ),
-            
           ],
         ),
       ),

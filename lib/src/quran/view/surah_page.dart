@@ -15,7 +15,10 @@ class SurahPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Sahibul Quran"),
+        title: Text(
+          "SahibulQuran",
+          style: AppTextStyle.bigTitle.copyWith(),
+        ),
         centerTitle: true,
       ),
       body: GetX<SurahController>(
