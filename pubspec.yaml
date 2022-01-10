@@ -33,6 +33,7 @@ dependencies:
     sdk: flutter
   flutter_iconly: ^1.0.2
   flutter_staggered_animations: ^1.0.0
+  flutter_unicons: ^0.0.6
   get: ^4.6.1
   http: ^0.13.4
   shimmer: ^2.0.0
@@ -63,15 +64,21 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+  fonts:
+    - family: NooreHidayat
+      fonts:
+        - asset: assets/fonts/noorehidayat.ttf
+        # - asset: fonts/Schyler-Italic.ttf
+        #   style: italic
+    - family: AlQalamQuran
+      fonts:
+        - asset: assets/fonts/AlQalamQuran.ttf
+    - family: Othmani
+      fonts:
+        - asset: assets/fonts/ar-Othmani.ttf
+    - family: Noorehira
+      fonts:
+        - asset: assets/fonts/noorehira.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
