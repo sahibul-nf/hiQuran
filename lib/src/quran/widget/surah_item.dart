@@ -25,7 +25,7 @@ class SurahItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: ColorPalletes.bgColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [AppShadow.card],
       ),
@@ -39,15 +39,18 @@ class SurahItem extends StatelessWidget {
                 Container(
                   height: 30,
                   width: 30,
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: ColorPalletes.sapphire.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(
-                    child: Text(
-                      "$number",
-                      style: AppTextStyle.normal.copyWith(
-                        color: ColorPalletes.sapphire,
+                    child: FittedBox(
+                      child: Text(
+                        "$number",
+                        style: AppTextStyle.normal.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ),
                   ),
@@ -65,7 +68,7 @@ class SurahItem extends StatelessWidget {
                           style: AppTextStyle.small,
                         ),
                         Text(
-                          " - $numberOfVerses Verses",
+                          " - $numberOfVerses Ayat",
                           style: AppTextStyle.small,
                         ),
                       ],

@@ -6,12 +6,13 @@ class Surah {
   Revelation? revelation;
   NameSurah? name;
 
-  Surah(
-      {this.number,
-      this.sequence,
-      this.tafsir,
-      this.numberOfVerses,
-      this.name});
+  Surah({
+    this.number,
+    this.sequence,
+    this.tafsir,
+    this.numberOfVerses,
+    this.name,
+  });
 
   factory Surah.fromJson(Map<String, dynamic> json) {
     var surah = Surah();

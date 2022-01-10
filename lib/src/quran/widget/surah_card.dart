@@ -25,10 +25,9 @@ class SurahCard extends StatelessWidget {
     return Container(
       width: size.width,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: ColorPalletes.bgColor,
-        borderRadius: BorderRadius.circular(36),
+        borderRadius: BorderRadius.circular(25),
         boxShadow: [AppShadow.card],
       ),
       child: Column(
@@ -37,15 +36,18 @@ class SurahCard extends StatelessWidget {
           Container(
             height: 30,
             width: 30,
+            padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: ColorPalletes.sapphire.withOpacity(0.1),
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
-              child: Text(
-                "$number",
-                style: AppTextStyle.normal.copyWith(
-                  color: ColorPalletes.sapphire,
+              child: FittedBox(
+                child: Text(
+                  "$number",
+                  style: AppTextStyle.normal.copyWith(
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
@@ -69,7 +71,7 @@ class SurahCard extends StatelessWidget {
                 style: AppTextStyle.small,
               ),
               Text(
-                " - $numberOfVerses Verses",
+                " - $numberOfVerses Ayat",
                 style: AppTextStyle.small,
               ),
             ],
