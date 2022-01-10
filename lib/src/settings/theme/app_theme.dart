@@ -8,6 +8,7 @@ abstract class ColorPalletes {
   static var goGreen = const Color(0xFF12AE67);
   static var yellowRed = const Color(0xFFFFCA60);
   static var bgColor = const Color(0xFFEBF1FF);
+  static var bgDarkColor = const Color(0x00f4f6f8);
 }
 
 abstract class AppTheme {
@@ -25,10 +26,13 @@ abstract class AppTheme {
   );
 
   static final dark = ThemeData.dark().copyWith(
-    backgroundColor: const Color(0x00f4f6f8),
-    buttonTheme: const ButtonThemeData(buttonColor: Colors.lightBlue),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Colors.lightBlue,
+    backgroundColor: ColorPalletes.bgDarkColor,
+    buttonTheme: ButtonThemeData(buttonColor: ColorPalletes.azure),
+    iconTheme: const IconThemeData(
+      color: Colors.white,
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: ColorPalletes.azure,
       foregroundColor: Colors.white,
     ),
   );

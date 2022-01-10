@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -13,7 +14,21 @@ class SettingsPage extends StatelessWidget {
           style: AppTextStyle.bigTitle,
         ),
       ),
-      body: Container(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => Get.changeTheme(AppTheme.dark),
+              child: const Text("Dark"),
+            ),
+            ElevatedButton(
+              onPressed: () => Get.changeTheme(AppTheme.light),
+              child: const Text("Light"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -15,6 +15,7 @@ class SurahController extends GetxController {
 
   var isLoading = true.obs;
   var showTafsir = false.obs;
+  var isSave = false.obs;
 
   Future fetchListOfSurah() async {
     final url = Uri.parse("https://api.quran.sutanlab.id/surah");

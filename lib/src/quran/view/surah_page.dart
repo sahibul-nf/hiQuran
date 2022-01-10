@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/view/surah_detail_page.dart';
@@ -34,7 +37,10 @@ class _SurahPageState extends State<SurahPage> {
         ),
         leading: IconButton(
           onPressed: () => _key.currentState!.openDrawer(),
-          icon: const Icon(Icons.menu_rounded),
+          icon: Unicon(
+            Unicons.uniBars,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
       ),
@@ -46,7 +52,7 @@ class _SurahPageState extends State<SurahPage> {
               // ignore: dead_code
               ? GetPlatform.isWeb
                   ? MediaQuery.of(context).size.width * 0.4
-                  : MediaQuery.of(context).size.width * 0.3
+                  : MediaQuery.of(context).size.width * 0.4
               : GetPlatform.isWeb
                   ? MediaQuery.of(context).size.width * 0.1
                   : MediaQuery.of(context).size.width * 0.15,
@@ -57,32 +63,34 @@ class _SurahPageState extends State<SurahPage> {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 16,
+              ),
               InkWell(
                 onHover: (value) {
                   setState(() {
                     isHover = value;
                   });
                 },
-                onTap: () {
-                  if (isHover) {
-                    Get.to(const SettingsPage());
-                  }
-                },
+                onTap: () => Get.back(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      IconlyLight.document,
+                    Unicon(
+                      Unicons.uniBookOpen,
                       size: 30,
+                      color: Theme.of(context).iconTheme.color ?? Colors.white,
                     ),
                     if (isHover == true)
-                      const Flexible(
+                      Flexible(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: FittedBox(
-                            child: Text("Quran"),
+                            child: Text(
+                              "Quran",
+                              style: AppTextStyle.normal,
+                            ),
                           ),
                         ),
                       )
@@ -90,12 +98,38 @@ class _SurahPageState extends State<SurahPage> {
                 ),
               ),
               const Spacer(),
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                  Get.to(const SettingsPage());
+              InkWell(
+                onHover: (value) {
+                  setState(() {
+                    isHover = value;
+                  });
                 },
-                icon: const Icon(IconlyLight.setting),
+                onTap: () => Get.to(const SettingsPage()),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Unicon(
+                      Unicons.uniSetting,
+                      size: 30,
+                      color: Theme.of(context).iconTheme.color ?? Colors.white,
+                    ),
+                    if (isHover == true)
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: FittedBox(
+                            child: Text(
+                              "Settings",
+                              style: AppTextStyle.normal,
+                            ),
+                          ),
+                        ),
+                      )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 8,
               ),
               IconButton(
                 onPressed: () {
@@ -103,8 +137,10 @@ class _SurahPageState extends State<SurahPage> {
                     isHover = !isHover;
                   });
                 },
-                icon: Icon(
-                  isHover ? IconlyLight.arrowLeft2 : IconlyLight.arrowRight2,
+                icon: Unicon(
+                  isHover ? Unicons.uniAngleLeftB : Unicons.uniAngleRightB,
+                  size: 22,
+                  color: Theme.of(context).iconTheme.color ?? Colors.white,
                 ),
               )
             ],

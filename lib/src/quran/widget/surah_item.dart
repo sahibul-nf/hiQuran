@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
+import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 class SurahItem extends StatelessWidget {
-  const SurahItem(
-      {Key? key,
-      this.number,
-      this.nameTransliteration,
-      this.revelation,
-      this.nameShort,
-      this.numberOfVerses})
-      : super(key: key);
+  SurahItem({
+    Key? key,
+    this.number,
+    this.nameTransliteration,
+    this.revelation,
+    this.nameShort,
+    this.numberOfVerses,
+  }) : super(key: key);
   final int? number;
   final String? nameTransliteration;
   final String? revelation;
   final String? nameShort;
   final int? numberOfVerses;
 
+  final controller = Get.find<SurahController>();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      // height: 70,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -29,11 +34,11 @@ class SurahItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [AppShadow.card],
       ),
+      constraints: BoxConstraints(maxWidth: size.width),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            flex: 3,
+          Flexible(
             child: Row(
               children: [
                 Container(
@@ -41,7 +46,7 @@ class SurahItem extends StatelessWidget {
                   width: 30,
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: ColorPalletes.sapphire.withOpacity(0.1),
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(
@@ -49,7 +54,7 @@ class SurahItem extends StatelessWidget {
                       child: Text(
                         "$number",
                         style: AppTextStyle.normal.copyWith(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).iconTheme.color,
                         ),
                       ),
                     ),
@@ -78,7 +83,15 @@ class SurahItem extends StatelessWidget {
               ],
             ),
           ),
-          Text("$nameShort", style: AppTextStyle.title),
+          Text(
+            "$nameShort",
+            textAlign: TextAlign.right,
+            style: AppTextStyle.title.copyWith(
+              fontFamily: "Noorehira",
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
         ],
       ),
     );

@@ -46,7 +46,7 @@ class SurahCard extends StatelessWidget {
                 child: Text(
                   "$number",
                   style: AppTextStyle.normal.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
               ),

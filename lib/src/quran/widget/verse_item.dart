@@ -29,34 +29,43 @@ class VerseItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
+          Container(
+            height: 30,
+            width: 30,
+            padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: Center(
+              child: FittedBox(
                 child: Text(
-                  "$textArab",
-                  maxLines: 10,
-                  textAlign: TextAlign.right,
-                  style: AppTextStyle.title.copyWith(fontSize: 20, height: 2.0),
+                  "$numberInSurah",
+                  style: AppTextStyle.normal.copyWith(
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ),
               ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               const SizedBox(width: 10),
-              Container(
-                height: 30,
-                width: 30,
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: ColorPalletes.bgColor,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: FittedBox(
-                    child: Text(
-                      "$numberInSurah",
-                      style: AppTextStyle.normal.copyWith(
-                        color: Theme.of(context).primaryColor,
-                      ),
+              Flexible(
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "$textArab",
+                    textAlign: TextAlign.right,
+                    style: AppTextStyle.title.copyWith(
+                      fontSize: 26,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: "Noorehira",
                     ),
                   ),
                 ),
@@ -81,7 +90,7 @@ class VerseItem extends StatelessWidget {
               margin: const EdgeInsets.only(top: 16),
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [AppShadow.card],
               ),
@@ -89,7 +98,7 @@ class VerseItem extends StatelessWidget {
                 child: Text(
                   "See Tafsir",
                   style: AppTextStyle.normal.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).iconTheme.color,
                     fontSize: 14,
                   ),
                 ),
