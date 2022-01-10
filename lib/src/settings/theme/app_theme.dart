@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 abstract class ColorPalletes {
   static var patricksBlue = const Color(0xFF1F2970);
@@ -8,6 +8,30 @@ abstract class ColorPalletes {
   static var goGreen = const Color(0xFF12AE67);
   static var yellowRed = const Color(0xFFFFCA60);
   static var bgColor = const Color(0xFFEBF1FF);
+}
+
+abstract class AppTheme {
+  static final light = ThemeData.light().copyWith(
+    backgroundColor: ColorPalletes.bgColor,
+    scaffoldBackgroundColor: ColorPalletes.bgColor,
+    primaryColor: ColorPalletes.azure,
+    cardColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorPalletes.azure,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: ColorPalletes.azure,
+    ),
+  );
+
+  static final dark = ThemeData.dark().copyWith(
+    backgroundColor: const Color(0x00f4f6f8),
+    buttonTheme: const ButtonThemeData(buttonColor: Colors.lightBlue),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.lightBlue,
+      foregroundColor: Colors.white,
+    ),
+  );
 }
 
 abstract class AppTextStyle {
@@ -31,7 +55,7 @@ abstract class AppTextStyle {
 
   static var small = const TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 12,
+    fontSize: 13,
     letterSpacing: 0.3,
   );
 }
