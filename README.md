@@ -2,9 +2,9 @@
 
 A new Flutter project.
 
-# Introduction
+## Introduction
 
-Bismillah.. 
+Bismillah... 
 <!-- text ini sebagai pengingat diri sendiri untuk meluruskan niat -->
 Salam semua, saya berniat ingin menjadi bagian dalam pengembangan, menyebarluaskan dan menjaga al-quran di suatu zaman. Mungkin dahulu teknologi yang paling mungkin untuk menyebarkan quran agar dapat dibaca oleh muslim adalah dengan "kertas", dengan perkembangan teknologi dizaman ini memungkinkan untuk membaca quran kapanpun, dimanapun dengan mudah hanya dalam genggaman melalui teknologi mobile, web dan internet yang mana kita rasakan hari ini. Saya termotivasi dari para ulama yang ikhlas dalam menyebarkan ilmu Allah di semesta ini. Saya harap, saya dapat ikut berkontribusi untuk umat ini sebagaimana para ulama. 
 
