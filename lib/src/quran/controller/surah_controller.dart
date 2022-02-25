@@ -13,6 +13,9 @@ class SurahController extends GetxController {
   final _verses = <Verse>[].obs;
   List<Verse> get verses => _verses();
 
+  final _audioUrl = <String>[].obs;
+  List<String> get audioUrl => _audioUrl();
+
   var isLoading = true.obs;
   var showTafsir = false.obs;
   var isSave = false.obs;
@@ -63,9 +66,11 @@ class SurahController extends GetxController {
         if (_listOfSurah.length < 7) {
           await Future.delayed(const Duration(milliseconds: 1000));
         }
+        _audioUrl.add(verse.audio!.primary ?? "");
       }
 
       print(_verses.length);
+      print("audios = ${_audioUrl.length}");
       return true;
     }
   }

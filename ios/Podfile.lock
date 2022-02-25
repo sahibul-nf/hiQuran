@@ -1,0 +1,48 @@
+PODS:
+  - audioplayers (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - midtrans_sdk (0.3.3):
+    - Flutter
+    - MidtransKit (= 1.20.1)
+  - MidtransCoreKit (1.20.1)
+  - MidtransKit (1.20.1):
+    - MidtransCoreKit (= 1.20.1)
+    - MidtransKit/UI (= 1.20.1)
+  - MidtransKit/UI (1.20.1):
+    - MidtransCoreKit (= 1.20.1)
+  - path_provider_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - Flutter (from `Flutter`)
+  - midtrans_sdk (from `.symlinks/plugins/midtrans_sdk/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - MidtransCoreKit
+    - MidtransKit
+
+EXTERNAL SOURCES:
+  audioplayers:
+    :path: ".symlinks/plugins/audioplayers/ios"
+  Flutter:
+    :path: Flutter
+  midtrans_sdk:
+    :path: ".symlinks/plugins/midtrans_sdk/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+
+SPEC CHECKSUMS:
+  audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  midtrans_sdk: cef026c4fef02566a7f2c80afc8d0779d646a7ed
+  MidtransCoreKit: 2503bd419c78445c59360b81afc2733dee226c8c
+  MidtransKit: f230a539a9b57bd314a91d78044ceee95fb76751
+  path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2

@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^2.0.0
+  audioplayers: ^0.20.1
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -36,6 +37,7 @@ dependencies:
   flutter_unicons: ^0.0.6
   get: ^4.6.1
   http: ^0.13.4
+  midtrans_sdk: ^0.3.3
   shimmer: ^2.0.0
 
 dev_dependencies:
