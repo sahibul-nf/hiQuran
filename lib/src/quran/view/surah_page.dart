@@ -32,7 +32,7 @@ class _SurahPageState extends State<SurahPage> {
       key: _key,
       appBar: AppBar(
         title: Text(
-          "MyQuran",
+          "Quran",
           style: AppTextStyle.bigTitle.copyWith(),
         ),
         leading: IconButton(
