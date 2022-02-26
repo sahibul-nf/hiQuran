@@ -1,9 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sahibul_nf.quran_app">
-   <application
-        android:label="quran_app"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+    android:label="hi_quran"
+    android:name="${applicationName}"
+    android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
