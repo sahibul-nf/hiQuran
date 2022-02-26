@@ -37,7 +37,6 @@ dependencies:
   flutter_unicons: ^0.0.6
   get: ^4.6.1
   http: ^0.13.4
-  midtrans_sdk: ^0.3.3
   shimmer: ^2.0.0
 
 dev_dependencies:
