@@ -21,6 +21,12 @@ class SurahController extends GetxController {
   var showTafsir = false.obs;
   var isSave = false.obs;
 
+  final _recenly = Surah().obs;
+  Surah get recenlySurah => _recenly();
+  void setRecenlySurah(Surah value) {
+    _recenly.value = value;
+  }
+
   Future fetchListOfSurah() async {
     try {
       final url = Uri.parse("https://api.quran.sutanlab.id/surah");

@@ -62,17 +62,24 @@ class SurahCard extends StatelessWidget {
             "$nameTranslation",
             style: AppTextStyle.normal.copyWith(fontSize: 14),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "$revelation",
-                style: AppTextStyle.small,
+              Chip(
+                backgroundColor: Theme.of(context).cardColor,
+                label: Text(
+                  "$revelation",
+                  style: AppTextStyle.small,
+                ),
               ),
-              Text(
-                " - $numberOfVerses Ayat",
-                style: AppTextStyle.small,
+              const SizedBox(width: 8),
+              Chip(
+                backgroundColor: Theme.of(context).cardColor,
+                label: Text(
+                  "$numberOfVerses Ayat",
+                  style: AppTextStyle.small,
+                ),
               ),
             ],
           ),

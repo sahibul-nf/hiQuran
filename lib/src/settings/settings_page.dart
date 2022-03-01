@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
+import 'package:quran_app/src/settings/theme/theme_page.dart';
+import 'package:quran_app/src/widgets/app_card.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -14,20 +17,42 @@ class SettingsPage extends StatelessWidget {
           style: AppTextStyle.bigTitle,
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => Get.changeTheme(AppTheme.dark),
-              child: const Text("Dark"),
+      body: ListView(
+        children: [
+          const SizedBox(height: 20),
+          InkWell(
+            onTap: () => Get.to(ThemePage()),
+            child: AppCard(
+              child: Row(
+                children: [
+                  Container(
+                    // height: 30,
+                    // width: 30,
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Unicon(
+                      Unicons.uniBrushAlt,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Text(
+                    "Change App Theme",
+                    style: AppTextStyle.normal,
+                  ),
+                  const Spacer(),
+                  Unicon(
+                    Unicons.uniArrowRight,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ],
+              ),
             ),
-            ElevatedButton(
-              onPressed: () => Get.changeTheme(AppTheme.light),
-              child: const Text("Light"),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
+import 'package:quran_app/bricks/my_widgets/search_bar.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/view/surah_detail_page.dart';
 import 'package:quran_app/src/quran/widget/shimmer/surah_card_shimmer.dart';
@@ -33,7 +34,7 @@ class _SurahPageState extends State<SurahPage> {
       appBar: AppBar(
         title: Text(
           "Quran",
-          style: AppTextStyle.bigTitle.copyWith(),
+          style: AppTextStyle.bigTitle,
         ),
         leading: IconButton(
           onPressed: () => _key.currentState!.openDrawer(),
@@ -43,6 +44,7 @@ class _SurahPageState extends State<SurahPage> {
           ),
         ),
         centerTitle: true,
+        elevation: 1,
       ),
       drawer: AppDrawer(),
       body: Obx(() {
@@ -52,21 +54,69 @@ class _SurahPageState extends State<SurahPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 children: [
+                  Obx(() {
+                    return controller.recenlySurah.name != null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Recenly",
+                                style: AppTextStyle.title,
+                              ),
+                              const SizedBox(height: 10),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(
+                                    SurahDetailPage(
+                                      number: controller.recenlySurah.number,
+                                      nameShort:
+                                          controller.recenlySurah.name!.arab,
+                                      revelation: controller
+                                          .recenlySurah.revelation!.id,
+                                      nameTransliteration:
+                                          controller.recenlySurah.name!.id,
+                                      nameTranslation: controller
+                                          .recenlySurah.name!.translationId,
+                                      numberOfVerses: controller
+                                          .recenlySurah.numberOfVerses,
+                                    ),
+                                  );
+                                },
+                                child: SurahItem(
+                                  number: controller.recenlySurah.number,
+                                  nameShort: controller.recenlySurah.name!.arab,
+                                  nameTransliteration:
+                                      controller.recenlySurah.name!.id,
+                                  numberOfVerses:
+                                      controller.recenlySurah.numberOfVerses,
+                                  revelation:
+                                      controller.recenlySurah.revelation!.id,
+                                ),
+                              ),
+                              const Divider(),
+                              const SizedBox(height: 20),
+                            ],
+                          )
+                        : const SizedBox();
+                  }),
                   for (var item in controller.listOfSurah)
                     FadeInDown(
                       child: InkWell(
                         highlightColor: Colors.white12,
                         splashColor: Colors.white12,
-                        onTap: () => Get.to(
-                          SurahDetailPage(
-                            number: item.number,
-                            nameShort: item.name!.arab,
-                            revelation: item.revelation!.id,
-                            nameTransliteration: item.name!.id,
-                            nameTranslation: item.name!.translationId,
-                            numberOfVerses: item.numberOfVerses,
-                          ),
-                        ),
+                        onTap: () {
+                          Get.to(
+                            SurahDetailPage(
+                              number: item.number,
+                              nameShort: item.name!.arab,
+                              revelation: item.revelation!.id,
+                              nameTransliteration: item.name!.id,
+                              nameTranslation: item.name!.translationId,
+                              numberOfVerses: item.numberOfVerses,
+                            ),
+                          );
+                          controller.setRecenlySurah(item);
+                        },
                         child: SurahItem(
                           number: item.number,
                           nameShort: item.name!.arab,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 class VerseItem extends StatelessWidget {
@@ -34,7 +35,7 @@ class VerseItem extends StatelessWidget {
             width: 30,
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
@@ -42,7 +43,7 @@ class VerseItem extends StatelessWidget {
                 child: Text(
                   "$numberInSurah",
                   style: AppTextStyle.normal.copyWith(
-                    color: Theme.of(context).iconTheme.color,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
@@ -63,9 +64,9 @@ class VerseItem extends StatelessWidget {
                     "$textArab",
                     textAlign: TextAlign.right,
                     style: AppTextStyle.title.copyWith(
-                      fontSize: 26,
+                      fontSize: 28,
                       fontWeight: FontWeight.normal,
-                      fontFamily: "Noorehira",
+                      fontFamily: "Uthmani",
                     ),
                   ),
                 ),
@@ -75,11 +76,14 @@ class VerseItem extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             "$textTransliteration",
-            style: AppTextStyle.title.copyWith(fontSize: 14),
+            style: AppTextStyle.normal.copyWith(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
-            "\"$textTranslation\"",
+            "$textTranslation",
             style: AppTextStyle.normal.copyWith(fontSize: 14),
             textAlign: TextAlign.start,
           ),
@@ -90,7 +94,7 @@ class VerseItem extends StatelessWidget {
               margin: const EdgeInsets.only(top: 16),
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [AppShadow.card],
               ),
@@ -98,7 +102,7 @@ class VerseItem extends StatelessWidget {
                 child: Text(
                   "See Tafsir",
                   style: AppTextStyle.normal.copyWith(
-                    color: Theme.of(context).iconTheme.color,
+                    color: Theme.of(context).primaryColor,
                     fontSize: 14,
                   ),
                 ),

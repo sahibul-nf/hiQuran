@@ -46,7 +46,7 @@ class SurahItem extends StatelessWidget {
                   width: 30,
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: Theme.of(context).primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(
@@ -54,7 +54,7 @@ class SurahItem extends StatelessWidget {
                       child: Text(
                         "$number",
                         style: AppTextStyle.normal.copyWith(
-                          color: Theme.of(context).iconTheme.color,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                     ),
@@ -87,7 +87,7 @@ class SurahItem extends StatelessWidget {
             "$nameShort",
             textAlign: TextAlign.right,
             style: AppTextStyle.title.copyWith(
-              fontFamily: "Noorehira",
+              fontFamily: "Uthman",
               fontSize: 24,
               fontWeight: FontWeight.normal,
             ),

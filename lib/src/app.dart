@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'hiQuran',
       darkTheme: AppTheme.dark,
       theme: AppTheme.light,
-      home: SurahPage(),
+      home: const SurahPage(),
       // home: MainPage(),
       // initialRoute: "/",
       // routes: {

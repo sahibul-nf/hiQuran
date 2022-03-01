@@ -45,10 +45,11 @@ class SurahDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "$nameTransliteration",
-          style: AppTextStyle.bigTitle.copyWith(),
+          "Quran",
+          style: AppTextStyle.bigTitle,
         ),
         centerTitle: true,
+        elevation: 1,
       ),
       // floatingActionButton: Obx(() {
       //   return AnimatedContainer(
@@ -117,7 +118,7 @@ class SurahDetailPage extends StatelessWidget {
                           numberOfVerses: numberOfVerses,
                           revelation: "$revelation",
                         ),
-                        const SizedBox(height: 10),
+                        // const SizedBox(height: 10),
                         for (var verse in controller.verses)
                           FadeInDown(
                             delay: const Duration(milliseconds: 500),

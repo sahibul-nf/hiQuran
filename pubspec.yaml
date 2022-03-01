@@ -29,13 +29,16 @@ environment:
 dependencies:
   animate_do: ^2.0.0
   audioplayers: ^0.20.1
+  badges: ^2.0.2
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_iconly: ^1.0.2
+  flutter_offline: ^2.1.0
   flutter_staggered_animations: ^1.0.0
   flutter_unicons: ^0.0.6
   get: ^4.6.1
+  google_fonts: 2.2.0
   http: ^0.13.4
   shimmer: ^2.0.0
 
@@ -56,6 +59,7 @@ flutter:
   assets:
     - assets/
     - assets/illustration/
+    - assets/icon/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
@@ -66,6 +70,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Uthmani
+      fonts:
+        - asset: assets/fonts/UthmanTN1_Ver07.otf
+    - family: Uthman
+      fonts:
+        - asset: assets/fonts/UthmanTN1B_Ver07.otf
     - family: NooreHidayat
       fonts:
         - asset: assets/fonts/noorehidayat.ttf
