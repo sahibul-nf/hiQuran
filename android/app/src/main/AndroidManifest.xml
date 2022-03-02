@@ -2,7 +2,7 @@
     package="com.sahibul_nf.quran_app">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-    android:label="hi_quran"
+    android:label="hiQuran"
     android:name="${applicationName}"
     android:icon="@mipmap/ic_launcher">
         <activity

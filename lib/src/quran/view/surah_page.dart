@@ -2,24 +2,16 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
-import 'package:quran_app/bricks/my_widgets/search_bar.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/view/surah_detail_page.dart';
 import 'package:quran_app/src/quran/widget/shimmer/surah_card_shimmer.dart';
 import 'package:quran_app/src/quran/widget/surah_item.dart';
-import 'package:quran_app/src/settings/controller/settings_controller.dart';
-import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_drawer.dart';
 
-class SurahPage extends StatefulWidget {
-  const SurahPage({Key? key}) : super(key: key);
+class SurahPage extends StatelessWidget {
+  SurahPage({Key? key}) : super(key: key);
 
-  @override
-  State<SurahPage> createState() => _SurahPageState();
-}
-
-class _SurahPageState extends State<SurahPage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   final controller = Get.put(SurahController());
@@ -39,7 +31,7 @@ class _SurahPageState extends State<SurahPage> {
         leading: IconButton(
           onPressed: () => _key.currentState!.openDrawer(),
           icon: Unicon(
-            Unicons.uniBars,
+            Unicons.uniAppsMonochrome,
             color: Colors.white,
           ),
         ),

@@ -16,6 +16,8 @@ class SettingsPage extends StatelessWidget {
           "Settings",
           style: AppTextStyle.bigTitle,
         ),
+        centerTitle: true,
+        elevation: 1,
       ),
       body: ListView(
         children: [
@@ -34,7 +36,7 @@ class SettingsPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Unicon(
-                      Unicons.uniBrushAlt,
+                      Unicons.uniPalette,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),

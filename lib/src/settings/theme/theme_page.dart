@@ -31,6 +31,7 @@ class ThemePage extends StatelessWidget {
           "App Themes",
           style: AppTextStyle.bigTitle,
         ),
+        centerTitle: true,
         elevation: 1,
       ),
       body: ListView(

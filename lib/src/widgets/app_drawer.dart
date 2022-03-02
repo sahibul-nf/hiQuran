@@ -44,7 +44,7 @@ class AppDrawer extends StatelessWidget {
                 onHover: (value) => settingsController.setHovering(value),
                 onTap: () {
                   Get.back();
-                  Get.to(const HomePage());
+                  Get.to(HomePage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +83,7 @@ class AppDrawer extends StatelessWidget {
                 },
                 onTap: () {
                   Get.back();
-                  Get.to(const SurahPage());
+                  Get.to(SurahPage());
                 },
                 child: AppCard(
                   hMargin: 0,
@@ -170,7 +170,7 @@ class AppDrawer extends StatelessWidget {
                 onHover: (value) => settingsController.setHovering(value),
                 onTap: () {
                   Get.back();
-                  Get.to(ProfilePage());
+                  Get.to(const ProfilePage());
                 },
                 child: AppCard(
                   hMargin: 0,

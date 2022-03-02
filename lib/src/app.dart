@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'hiQuran',
       darkTheme: AppTheme.dark,
       theme: AppTheme.light,
-      home: const SurahPage(),
+      home: SurahPage(),
       // home: MainPage(),
       // initialRoute: "/",
       // routes: {
