@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/view/surah_detail_page.dart';
@@ -8,6 +7,7 @@ import 'package:quran_app/src/quran/widget/shimmer/surah_card_shimmer.dart';
 import 'package:quran_app/src/quran/widget/surah_item.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_drawer.dart';
+import 'package:unicons/unicons.dart';
 
 class SurahPage extends StatelessWidget {
   SurahPage({Key? key}) : super(key: key);
@@ -30,8 +30,8 @@ class SurahPage extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () => _key.currentState!.openDrawer(),
-          icon: Unicon(
-            Unicons.uniAppsMonochrome,
+          icon: const Icon(
+            UniconsSolid.apps,
             color: Colors.white,
           ),
         ),
@@ -106,6 +106,7 @@ class SurahPage extends StatelessWidget {
                               nameTranslation: item.name!.translationId,
                               numberOfVerses: item.numberOfVerses,
                             ),
+                            routeName: 'surah-detail',
                           );
                           controller.setRecenlySurah(item);
                         },

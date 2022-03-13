@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
-import 'package:quran_app/src/helper/exception.dart';
 import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
 
@@ -48,7 +47,7 @@ class SurahController extends GetxController {
           }
         }
 
-        print(_listOfSurah.length);
+        log(_listOfSurah.length.toString());
 
         return true;
       } else {
@@ -83,12 +82,13 @@ class SurahController extends GetxController {
           _audioUrl.add(verse.audio!.primary ?? "");
         }
 
-        print(_verses.length);
-        print("audios = ${_audioUrl.length}");
+        log(_verses.length.toString());
+        log("audios = ${_audioUrl.length}");
         return true;
       }
     } catch (e) {
-      throw ServerException();
+      // throw ServerException();
+      return e;
     }
   }
 

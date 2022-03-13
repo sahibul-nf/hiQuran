@@ -8,6 +8,7 @@ abstract class ColorPalletes {
   static var sapphire = const Color(0xFF0D50AB);
   static var mediumPurple = const Color(0xFF7C83FD);
   static var azure = const Color(0xFF1E7AF5);
+  static var frenchPink = const Color(0xFFFF5D8F);
   static var goGreen = const Color(0xFF12AE67);
   static var yellowRed = const Color(0xFFFFCA60);
   static var bgColor = const Color(0xFFF7F8F9);
@@ -23,6 +24,9 @@ abstract class AppTheme {
     scaffoldBackgroundColor: ColorPalletes.bgColor,
     primaryColor: settingController.primaryColor.value,
     cardColor: Colors.white,
+    // iconTheme: IconThemeData(
+    //   color: settingController.primaryColor.value,
+    // ),
     appBarTheme: AppBarTheme(
       backgroundColor: settingController.primaryColor.value,
     ),
@@ -42,6 +46,7 @@ abstract class AppTheme {
     cardColor: ColorPalletes.primaryDarkColor,
     appBarTheme: AppBarTheme(
       backgroundColor: ColorPalletes.primaryDarkColor,
+      foregroundColor: Colors.white,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorPalletes.goGreen,
@@ -65,12 +70,12 @@ abstract class AppTextStyle {
 
   static var normal = GoogleFonts.poppins(
     fontWeight: FontWeight.w500,
-    fontSize: 16,
+    fontSize: 14,
     letterSpacing: 0.5,
   );
 
   static var small = GoogleFonts.poppins(
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     fontSize: 13,
     letterSpacing: 0.3,
   );
