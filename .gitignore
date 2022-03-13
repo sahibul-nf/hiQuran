@@ -34,9 +34,6 @@
 # Web related
 lib/generated_plugin_registrant.dart
 
-# Shared value
-lib/shared_value.dart
-
 # Symbolication related
 app.*.symbols
 
