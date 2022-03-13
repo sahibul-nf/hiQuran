@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:quran_app/src/quran/controller/audio_player_controller.dart';
+// import 'package:quran_app/src/quran/controller/audio_player_controller.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
 import 'package:quran_app/src/quran/widget/shimmer/surah_card_shimmer.dart';
@@ -30,7 +30,7 @@ class SurahDetailPage extends StatelessWidget {
   final int? numberOfVerses;
 
   final controller = Get.find<SurahController>();
-  final audioPlayerController = Get.put(AudioPlayerController());
+  // final audioPlayerController = Get.put(AudioPlayerController());
 
   Widget tafsirView = const SizedBox();
 
