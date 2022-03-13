@@ -1,3 +1,0 @@
-const supabaseUrl = "https://cltlttpwsuuvpwugdyhm.supabase.co";
-const supabaseAnonKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsdGx0dHB3c3V1dnB3dWdkeWhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDY1ODk0MjksImV4cCI6MTk2MjE2NTQyOX0.W3bVTDGN_BGvmdQR6bAsBJsCwGZlyDA1JV-eU6SaTVg";
