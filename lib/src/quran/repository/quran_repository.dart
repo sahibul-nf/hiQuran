@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:quran_app/src/helper/exception.dart';
 import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:http/http.dart' as http;
 
@@ -33,7 +31,7 @@ class QuranRepositoryImpl implements QuranRepository {
       }
       return listOfSurah;
     } else {
-      throw ServerException();
+      return [];
     }
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:get/get.dart';
+import 'package:quran_app/src/home/view/home_page.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
+import 'package:quran_app/src/wrapper.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
       title: 'hiQuran',
       darkTheme: AppTheme.dark,
       theme: AppTheme.light,
-      home: SurahPage(),
+      // home: SignInPage(),
+      home: Wrapper(),
+      // home: HomePage(),
+      // home: UploadAvatarPage(),
       // home: MainPage(),
       // initialRoute: "/",
       // routes: {

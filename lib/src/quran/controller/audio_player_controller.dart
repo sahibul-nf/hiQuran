@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +38,7 @@ class AudioPlayerController extends GetxController {
   fetchDuration() async {
     duration.value = await audioPlayer.getDuration();
     audioPlayer.onDurationChanged.listen((event) {
-      print(event.inMilliseconds);
+      log(event.inMilliseconds.toString());
     });
   }
 

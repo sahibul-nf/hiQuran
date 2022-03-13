@@ -1,7 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:audioplayers/audioplayers_api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:quran_app/src/quran/controller/audio_player_controller.dart';

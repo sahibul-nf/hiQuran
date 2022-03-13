@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
+import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 import 'package:quran_app/src/home/view/home_page.dart';
+import 'package:quran_app/src/profile/controller/user_controller.dart';
 import 'package:quran_app/src/profile/view/profile_page.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:unicons/unicons.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
 
-  final settingsController = Get.put(SettingsController());
+  final _settingsController = Get.put(SettingsController());
+  final _userController = Get.put(UserControllerImpl());
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class AppDrawer extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           height: double.infinity,
-          width: settingsController.isHover.value
+          width: _settingsController.isHover.value
               // ignore: dead_code
               ? GetPlatform.isWeb
                   ? MediaQuery.of(context).size.width * 0.4
@@ -30,7 +33,7 @@ class AppDrawer extends StatelessWidget {
                   ? MediaQuery.of(context).size.width * 0.1
                   : MediaQuery.of(context).size.width * 0.17,
           margin: const EdgeInsets.all(20),
-          padding: EdgeInsets.all(settingsController.isHover.value ? 10 : 10),
+          padding: EdgeInsets.all(_settingsController.isHover.value ? 10 : 10),
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor.withOpacity(0.8),
             borderRadius: BorderRadius.circular(20),
@@ -41,10 +44,10 @@ class AppDrawer extends StatelessWidget {
                 height: 10,
               ),
               InkWell(
-                onHover: (value) => settingsController.setHovering(value),
+                onHover: (value) => _settingsController.setHovering(value),
                 onTap: () {
-                  Get.back();
-                  Get.to(HomePage());
+                  // Get.back();
+                  // Get.to(HomePage());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +59,7 @@ class AppDrawer extends StatelessWidget {
                         height: 36,
                       ),
                     ),
-                    if (settingsController.isHover.value == true)
+                    if (_settingsController.isHover.value == true)
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10),
@@ -78,7 +81,7 @@ class AppDrawer extends StatelessWidget {
                 onHover: (value) {
                   // setState(() {
                   // settingsController.isHover.value = value;
-                  settingsController.setHovering(value);
+                  _settingsController.setHovering(value);
                   // });
                 },
                 onTap: () {
@@ -87,22 +90,22 @@ class AppDrawer extends StatelessWidget {
                 },
                 child: AppCard(
                   hMargin: 0,
-                  hPadding: settingsController.isHover.value ? 10 : 0,
+                  hPadding: _settingsController.isHover.value ? 10 : 0,
                   vPadding: 0,
                   radius: 20,
                   color: Colors.transparent,
                   child: Row(
-                    mainAxisAlignment: settingsController.isHover.value
+                    mainAxisAlignment: _settingsController.isHover.value
                         ? MainAxisAlignment.start
                         : MainAxisAlignment.center,
                     children: [
-                      Unicon(
-                        Unicons.uniBookOpen,
+                      Icon(
+                        UniconsLine.book_open,
                         // size: 30,
                         color:
                             Theme.of(context).iconTheme.color ?? Colors.white,
                       ),
-                      if (settingsController.isHover.value == true)
+                      if (_settingsController.isHover.value == true)
                         Flexible(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
@@ -126,28 +129,28 @@ class AppDrawer extends StatelessWidget {
                 onHover: (value) {
                   // setState(() {
                   // settingsController.isHover.value = value;
-                  settingsController.setHovering(value);
+                  _settingsController.setHovering(value);
                   // });
                 },
                 onTap: () => Get.to(const SettingsPage()),
                 child: AppCard(
                   hMargin: 0,
-                  hPadding: settingsController.isHover.value ? 10 : 0,
+                  hPadding: _settingsController.isHover.value ? 10 : 0,
                   vPadding: 0,
                   radius: 20,
                   color: Colors.transparent,
                   child: Row(
-                    mainAxisAlignment: settingsController.isHover.value
+                    mainAxisAlignment: _settingsController.isHover.value
                         ? MainAxisAlignment.start
                         : MainAxisAlignment.center,
                     children: [
-                      Unicon(
-                        Unicons.uniSetting,
+                      Icon(
+                        UniconsLine.setting,
                         // size: 30,
                         color:
                             Theme.of(context).iconTheme.color ?? Colors.white,
                       ),
-                      if (settingsController.isHover.value == true)
+                      if (_settingsController.isHover.value == true)
                         Flexible(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
@@ -167,39 +170,107 @@ class AppDrawer extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onHover: (value) => settingsController.setHovering(value),
+                onHover: (value) => _settingsController.setHovering(value),
                 onTap: () {
-                  Get.back();
-                  Get.to(const ProfilePage());
+                  // Get.back();
+                  // Get.to(SignUpPage());
+                  Get.to(
+                    ProfilePage(),
+                    duration: const Duration(milliseconds: 500),
+                    routeName: 'profile',
+                    transition: Transition.circularReveal,
+                  );
                 },
                 child: AppCard(
                   hMargin: 0,
-                  hPadding: settingsController.isHover.value ? 10 : 0,
-                  vPadding: settingsController.isHover.value ? 10 : 8,
+                  hPadding: _settingsController.isHover.value ? 10 : 0,
+                  vPadding: _settingsController.isHover.value ? 6 : 8,
                   radius: 20,
-                  color: !settingsController.isHover.value
+                  color: !_settingsController.isHover.value
                       ? Colors.transparent
                       : null,
                   child: Row(
-                    mainAxisAlignment: settingsController.isHover.value
+                    mainAxisAlignment: _settingsController.isHover.value
                         ? MainAxisAlignment.start
                         : MainAxisAlignment.center,
                     children: [
                       Flexible(
-                        child: Image.asset(
-                          "assets/memojiBoy.png",
-                          height: 36,
-                        ),
+                        child: (_userController.user.photoUrl != null)
+                            ? Hero(
+                                tag: "avatar",
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.network(
+                                    _userController.user.photoUrl.toString(),
+                                    width: 36,
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    loadingBuilder:
+                                        (ctx, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Center(
+                                        child: SizedBox(
+                                          height: 36,
+                                          child:
+                                              DottedCircularProgressIndicatorFb(
+                                            currentDotColor: _settingsController
+                                                    .isDarkMode.value
+                                                ? Theme.of(context)
+                                                    .backgroundColor
+                                                    .withOpacity(0.3)
+                                                : Theme.of(context)
+                                                    .primaryColor
+                                                    .withOpacity(0.3),
+                                            defaultDotColor: _settingsController
+                                                    .isDarkMode.value
+                                                ? Theme.of(context)
+                                                    .backgroundColor
+                                                : Theme.of(context)
+                                                    .primaryColor,
+                                            numDots: 7,
+                                            dotSize: 3,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                            : Hero(
+                                tag: "avatarIcon",
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .cardColor
+                                        .withOpacity(1),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: const Icon(
+                                    Icons.person,
+                                    // size: 120,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
                       ),
-                      if (settingsController.isHover.value)
+                      if (_settingsController.isHover.value)
                         Flexible(
                           flex: 2,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Sahibul Nuzul Firdaus",
-                              style: AppTextStyle.normal,
-                              overflow: TextOverflow.ellipsis,
+                            child: Obx(
+                              () => _userController.user.name != null
+                                  ? Text(
+                                      _userController.user.name.toString(),
+                                      style: AppTextStyle.normal,
+                                      overflow: TextOverflow.ellipsis,
+                                    )
+                                  : Text(
+                                      "Hamba Allah",
+                                      style: AppTextStyle.normal,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ),
                           ),
                         )
@@ -207,34 +278,33 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  settingsController.isDarkMode.value
+                  _settingsController.isDarkMode.value
                       ? Get.changeTheme(
                           AppTheme.light.copyWith(
-                            primaryColor: settingsController.primaryColor.value,
+                            primaryColor:
+                                _settingsController.primaryColor.value,
                             appBarTheme: AppBarTheme(
-                              color: settingsController.primaryColor.value,
+                              color: _settingsController.primaryColor.value,
                             ),
                             bottomNavigationBarTheme:
                                 BottomNavigationBarThemeData(
                               selectedItemColor:
-                                  settingsController.primaryColor.value,
+                                  _settingsController.primaryColor.value,
                             ),
                           ),
                         )
                       : Get.changeTheme(AppTheme.dark);
 
-                  settingsController
-                      .setDarkMode(!settingsController.isDarkMode.value);
+                  _settingsController
+                      .setDarkMode(!_settingsController.isDarkMode.value);
                 },
-                child: Unicon(
-                  settingsController.isDarkMode.value
-                      ? Unicons.uniMoon
-                      : Unicons.uniSun,
+                child: Icon(
+                  _settingsController.isDarkMode.value
+                      ? UniconsLine.moon
+                      : UniconsLine.sun,
                   color: Theme.of(context).iconTheme.color ?? Colors.white,
                 ),
               ),
@@ -244,16 +314,16 @@ class AppDrawer extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   // setState(() {
-                  settingsController
-                      .setHovering(!settingsController.isHover.value);
+                  _settingsController
+                      .setHovering(!_settingsController.isHover.value);
                   // settingsController.isHover.value =
                   //     !settingsController.isHover.value;
                   // });
                 },
-                icon: Unicon(
-                  settingsController.isHover.value
-                      ? Unicons.uniAngleLeftB
-                      : Unicons.uniAngleRightB,
+                icon: Icon(
+                  _settingsController.isHover.value
+                      ? UniconsLine.angle_left_b
+                      : UniconsLine.angle_right_b,
                   size: 22,
                   color: Theme.of(context).iconTheme.color ?? Colors.white,
                 ),

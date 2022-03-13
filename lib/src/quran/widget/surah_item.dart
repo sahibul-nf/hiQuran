@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
+import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 class SurahItem extends StatelessWidget {
@@ -21,6 +21,7 @@ class SurahItem extends StatelessWidget {
   final int? numberOfVerses;
 
   final controller = Get.find<SurahController>();
+  final settingController = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,31 +42,37 @@ class SurahItem extends StatelessWidget {
           Flexible(
             child: Row(
               children: [
-                Container(
-                  height: 30,
-                  width: 30,
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Center(
-                    child: FittedBox(
-                      child: Text(
-                        "$number",
-                        style: AppTextStyle.normal.copyWith(
-                          color: Theme.of(context).primaryColor,
+                Obx(() {
+                  return Container(
+                    height: 30,
+                    width: 30,
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: !settingController.isDarkMode.value
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: FittedBox(
+                        child: Text(
+                          "$number",
+                          style: AppTextStyle.normal.copyWith(
+                            color: !settingController.isDarkMode.value
+                                ? Theme.of(context).primaryColor
+                                : null,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("$nameTransliteration", style: AppTextStyle.title),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
                         Text(
@@ -86,10 +93,9 @@ class SurahItem extends StatelessWidget {
           Text(
             "$nameShort",
             textAlign: TextAlign.right,
-            style: AppTextStyle.title.copyWith(
+            style: AppTextStyle.bigTitle.copyWith(
               fontFamily: "Uthman",
-              fontSize: 24,
-              fontWeight: FontWeight.normal,
+              // fontSize: ,
             ),
           ),
         ],

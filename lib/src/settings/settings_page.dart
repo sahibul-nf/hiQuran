@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/settings/theme/theme_page.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:unicons/unicons.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -35,8 +35,8 @@ class SettingsPage extends StatelessWidget {
                       color: Theme.of(context).primaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    child: Unicon(
-                      Unicons.uniPalette,
+                    child: Icon(
+                      UniconsLine.palette,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
@@ -46,8 +46,8 @@ class SettingsPage extends StatelessWidget {
                     style: AppTextStyle.normal,
                   ),
                   const Spacer(),
-                  Unicon(
-                    Unicons.uniArrowRight,
+                  Icon(
+                    UniconsLine.arrow_right,
                     color: Theme.of(context).primaryColor,
                   ),
                 ],

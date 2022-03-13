@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unicons/flutter_unicons.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:unicons/unicons.dart';
 
 class ThemePage extends StatelessWidget {
   ThemePage({Key? key}) : super(key: key);
@@ -14,13 +14,15 @@ class ThemePage extends StatelessWidget {
     "Azure",
     "Go Green",
     "Sapphire",
-    "Medium Pupple"
+    "Medium Pupple",
+    "French Pink"
   ];
   final List<Color> _listColor = [
     ColorPalletes.azure,
     ColorPalletes.goGreen,
     ColorPalletes.sapphire,
     ColorPalletes.mediumPurple,
+    ColorPalletes.frenchPink
   ];
 
   @override
@@ -65,6 +67,11 @@ class ThemePage extends StatelessWidget {
                         settingController.setThemePrimaryColor(_listColor[i]);
 
                         break;
+                      case 4:
+                        settingController.setPrimaryColor(_listColor[i]);
+                        settingController.setThemePrimaryColor(_listColor[i]);
+
+                        break;
                       default:
                     }
                   },
@@ -82,8 +89,8 @@ class ThemePage extends StatelessWidget {
                             ),
                             child: (settingController.primaryColor.value ==
                                     _listColor[i])
-                                ? Unicon(
-                                    Unicons.uniCheck,
+                                ? const Icon(
+                                    UniconsLine.check,
                                     color: Colors.white,
                                   )
                                 : const SizedBox(),
