@@ -16,10 +16,7 @@ void main() async {
   );
 
   // supabase initialize
-  await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseAnonKey,
-  );
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
 
   Get.put<GetStorage>(GetStorage());
 
