@@ -91,7 +91,9 @@ class ProfilePage extends StatelessWidget {
                 );
               } else {
                 return Container(
-                  color: primaryColor,
+                  color: _settingController.isDarkMode.value
+                      ? Theme.of(context).cardColor
+                      : primaryColor,
                   height: size.height * 0.5,
                   child: Align(
                     alignment: Alignment.topCenter,
@@ -101,13 +103,17 @@ class ProfilePage extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 90),
                         padding: const EdgeInsets.all(25),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor.withOpacity(0.5),
+                          color: _settingController.isDarkMode.value
+                              ? primaryColor.withOpacity(0.5)
+                              : Theme.of(context).cardColor.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Icon(
                           Icons.person,
                           size: 90,
-                          color: Theme.of(context).cardColor,
+                          color: _settingController.isDarkMode.value
+                              ? Colors.grey
+                              : Theme.of(context).cardColor,
                         ),
                       ),
                     ),
@@ -126,7 +132,9 @@ class ProfilePage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    color: Theme.of(context).cardColor,
+                    color: _settingController.isDarkMode.value
+                        ? primaryColor
+                        : Theme.of(context).cardColor,
                     boxShadow: [AppShadow.card],
                   ),
                   child: ListView(
@@ -248,7 +256,9 @@ class ProfileItem extends StatelessWidget {
         hMargin: 0,
         vPadding: 10,
         radius: 16,
-        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
+        color: settingController.isDarkMode.value
+            ? Theme.of(context).cardColor
+            : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
         child: Row(
           children: [
             Container(
