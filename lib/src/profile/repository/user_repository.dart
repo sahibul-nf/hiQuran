@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:io' as i;
 
 import 'package:quran_app/src/profile/formatter/response_formatter.dart';
 import 'package:quran_app/src/profile/model/user.dart' as model;
@@ -11,7 +11,7 @@ abstract class UserRepository {
   Future<UserResultFormatter> updateUser(int? id, dynamic body);
   Future<UserResultFormatter> deleteUser(int? id);
   Future<UploadResultFormatter> uploadFileImage(
-      String fileName, File fileImage);
+      String fileName, i.File fileImage);
 }
 
 class UserRepositoryImpl implements UserRepository {
@@ -89,7 +89,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<UploadResultFormatter> uploadFileImage(
-      String fileName, File fileImage) async {
+      String fileName, i.File fileImage) async {
     final res = await supabase.storage.from('assets').upload(
           fileName,
           fileImage,

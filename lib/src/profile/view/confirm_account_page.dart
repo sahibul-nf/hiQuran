@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:io' as i;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -203,7 +203,7 @@ class ConfirmAccountPage extends StatelessWidget {
       _state.isLoading.value = false;
       Get.snackbar("Woo hoo..", "Your successfully to create account");
       Get.offAll(HomePage());
-      userController.fileImage.value = File("");
+      userController.fileImage.value = i.File("");
       userController.copiedText.value = "";
       userController.username.value = "";
     }

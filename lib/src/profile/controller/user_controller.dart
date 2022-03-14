@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:io' as i;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +40,7 @@ class UserControllerImpl extends UserController {
     log("User: ${_user.value}");
   }
 
-  var fileImage = File("").obs;
+  var fileImage = i.File("").obs;
 
   Future<bool> createAvatar() async {
     var baseUrl = "https://readyplayer.me/avatar";
@@ -66,7 +66,7 @@ class UserControllerImpl extends UserController {
 
     if (res != null) {
       for (var item in res) {
-        fileImage.value = File(item.path);
+        fileImage.value = i.File(item.path);
         log(item.path);
       }
     }
@@ -85,7 +85,7 @@ class UserControllerImpl extends UserController {
 
     if (result != null) {
       result.paths;
-      fileImage.value = File(result.files.first.path.toString());
+      fileImage.value = i.File(result.files.first.path.toString());
     } else {
       // User canceled the picker
       log("kosong");
@@ -96,7 +96,7 @@ class UserControllerImpl extends UserController {
     try {
       final file = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (file != null) {
-        fileImage.value = File(file.path);
+        fileImage.value = i.File(file.path);
       }
 
       log("File path: ${fileImage.value.path}");
