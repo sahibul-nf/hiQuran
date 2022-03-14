@@ -3,16 +3,11 @@ import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:http/http.dart' as http;
 
 abstract class QuranRepository {
-  Future<Surah> fetchSurahByID(int id);
+  // Future<Surah> fetchSurahByID(int id);
   Future<List<Surah>> fetchListOfSurah();
 }
 
 class QuranRepositoryImpl implements QuranRepository {
-  @override
-  Future<Surah> fetchSurahByID(int id) {
-    // TODO: implement fetchSurahByID
-    throw UnimplementedError();
-  }
 
   @override
   Future<List<Surah>> fetchListOfSurah() async {

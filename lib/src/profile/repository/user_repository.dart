@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'dart:io' as i;
+// import 'dart:io' as i;
+import 'package:universal_io/io.dart' as i;
 
 import 'package:quran_app/src/profile/formatter/response_formatter.dart';
 import 'package:quran_app/src/profile/model/user.dart' as model;

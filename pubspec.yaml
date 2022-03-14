@@ -43,7 +43,6 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   flutter_offline: ^2.1.0
   flutter_staggered_animations: ^1.0.0
-  flutter_svg: ^1.0.3
   geolocator: ^8.2.0
   get: ^4.6.1
   get_storage: ^2.0.3

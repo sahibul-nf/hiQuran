@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'dart:io' as i;
+// import 'dart:io' as i;
+import 'package:universal_io/io.dart' as i;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,7 @@ class UserControllerImpl extends UserController {
     log("User: ${_user.value}");
   }
 
-  var fileImage = i.File("").obs;
+  dynamic fileImage = i.File("").obs;
 
   Future<bool> createAvatar() async {
     var baseUrl = "https://readyplayer.me/avatar";
@@ -78,6 +79,13 @@ class UserControllerImpl extends UserController {
       maxTime: 30,
       cropOpt: CropOption(),
     );
+
+    if (res != null) {
+      for (var item in res) {
+        fileImage.value = i.File(item.path);
+        log(item.path);
+      }
+    }
   }
 
   pickerFile() async {
