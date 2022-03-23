@@ -1,10 +1,5 @@
-import 'package:quran_app/src/profile/model/user.dart' as model;
-
-abstract class ResultFormatter {
-  final String? error;
-
-  ResultFormatter(this.error);
-}
+import 'package:quran_app/helper/result.dart';
+import 'package:quran_app/src/profile/models/user.dart' as model;
 
 class UserResultFormatter extends ResultFormatter {
   final model.User? user;

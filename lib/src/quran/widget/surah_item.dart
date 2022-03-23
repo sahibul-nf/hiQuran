@@ -29,7 +29,7 @@ class SurahItem extends StatelessWidget {
     return Container(
       width: size.width,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-      margin: const EdgeInsets.only(bottom: 10),
+      // margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),

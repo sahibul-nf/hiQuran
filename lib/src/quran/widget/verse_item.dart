@@ -19,6 +19,7 @@ class VerseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
@@ -48,29 +49,22 @@ class VerseItem extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(width: 10),
-              Flexible(
-                child: Container(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width,
-                  ),
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    "$textArab",
-                    textAlign: TextAlign.right,
-                    style: AppTextStyle.title.copyWith(
-                      fontSize: 28,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: "Uthmani",
-                    ),
-                  ),
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(left: 40),
+              child: Text(
+                "$textArab",
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.normal,
+                  fontFamily: "Uthmani",
                 ),
               ),
-            ],
+            ),
           ),
           const SizedBox(height: 16),
           Text(

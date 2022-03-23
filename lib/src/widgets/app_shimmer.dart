@@ -17,13 +17,13 @@ class AppShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      highlightColor: Colors.grey[200]!,
-      baseColor: Colors.white,
+      highlightColor: Theme.of(context).cardColor.withOpacity(0.1),
+      baseColor: Theme.of(context).cardColor,
       child: Container(
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(radius),
           boxShadow: [AppShadow.card],
         ),

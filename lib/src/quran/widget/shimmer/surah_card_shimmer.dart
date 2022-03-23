@@ -14,6 +14,7 @@ class SurahCardShimmer extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: AppShimmer(
               height: 70,
+              
             ),
           )
       ],

@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "717373735261",
+    "project_id": "hi-quran",
+    "storage_bucket": "hi-quran.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717373735261:android:5d9abebb1dc02f92baa8b4",
+        "android_client_info": {
+          "package_name": "com.sahibul_nf.quran_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717373735261-l9hacfv2v28qpo3skg197duf07036ove.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sahibul_nf.quran_app",
+            "certificate_hash": "b8b8eb67c5dd3c4a168262df7acd447c281c3c6b"
+          }
+        },
+        {
+          "client_id": "717373735261-tfg9v5o7h1b4sv3uja4h10neht36lhm8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sahibul_nf.quran_app",
+            "certificate_hash": "091aae45c4ae7b8f801c78deca62a7819349888d"
+          }
+        },
+        {
+          "client_id": "717373735261-uo9bdcsfpgir50me9ul892jjh2c365tq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJb5YJn_vljiNIkrQkLv7COantKyX90bY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717373735261-uo9bdcsfpgir50me9ul892jjh2c365tq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "717373735261-8fh9mtumbrfi9skd280e6omfg4q4897e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sahibulnf.quranApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

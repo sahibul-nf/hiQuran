@@ -1,14 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 import 'package:quran_app/src/home/view/home_page.dart';
-import 'package:quran_app/src/profile/controller/user_controller.dart';
-import 'package:quran_app/src/profile/view/profile_page.dart';
+import 'package:quran_app/src/prayer_time/views/prayer_time_page.dart';
+import 'package:quran_app/src/prayer_time/views/qiblat_page.dart';
+import 'package:quran_app/src/profile/controllers/user_controller.dart';
+import 'package:quran_app/src/profile/views/profile_page.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:quran_app/src/widgets/coming_soon_card.dart';
 import 'package:unicons/unicons.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -27,7 +33,7 @@ class AppDrawer extends StatelessWidget {
           width: _settingsController.isHover.value
               // ignore: dead_code
               ? GetPlatform.isWeb
-                  ? MediaQuery.of(context).size.width * 0.4
+                  ? MediaQuery.of(context).size.width * 0.2
                   : MediaQuery.of(context).size.width * 0.4
               : GetPlatform.isWeb
                   ? MediaQuery.of(context).size.width * 0.1
@@ -121,6 +127,97 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
+              InkWell(
+                onHover: (value) {
+                  // setState(() {
+                  // settingsController.isHover.value = value;
+                  _settingsController.setHovering(value);
+                  // });
+                },
+                onTap: () {
+                  Get.back();
+                  Get.to(PrayerTimePage());
+                },
+                child: AppCard(
+                  hMargin: 0,
+                  hPadding: _settingsController.isHover.value ? 10 : 0,
+                  vPadding: 0,
+                  radius: 20,
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: _settingsController.isHover.value
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        UniconsLine.clock,
+                        color:
+                            Theme.of(context).iconTheme.color ?? Colors.white,
+                      ),
+                      if (_settingsController.isHover.value == true)
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: FittedBox(
+                              child: Text(
+                                "Prayer Time",
+                                style: AppTextStyle.normal,
+                              ),
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              InkWell(
+                onHover: (value) {
+                  // setState(() {
+                  // settingsController.isHover.value = value;
+                  _settingsController.setHovering(value);
+                  // });
+                },
+                onTap: () {
+                  Get.back();
+                  Get.bottomSheet(const ComingSoonCard());
+                  // TODO: set this route future
+
+                  // Get.to(QiblatPage());
+                },
+                child: AppCard(
+                  hMargin: 0,
+                  hPadding: _settingsController.isHover.value ? 10 : 0,
+                  vPadding: 0,
+                  radius: 20,
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: _settingsController.isHover.value
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        UniconsLine.compass,
+                        color:
+                            Theme.of(context).iconTheme.color ?? Colors.white,
+                      ),
+                      if (_settingsController.isHover.value == true)
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: FittedBox(
+                              child: Text(
+                                "Qiblat",
+                                style: AppTextStyle.normal,
+                              ),
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
               const Spacer(),
               const SizedBox(
                 height: 16,
@@ -132,7 +229,10 @@ class AppDrawer extends StatelessWidget {
                   _settingsController.setHovering(value);
                   // });
                 },
-                onTap: () => Get.to(const SettingsPage()),
+                onTap: () {
+                  Get.back();
+                  Get.to(const SettingsPage());
+                },
                 child: AppCard(
                   hMargin: 0,
                   hPadding: _settingsController.isHover.value ? 10 : 0,
@@ -178,7 +278,8 @@ class AppDrawer extends StatelessWidget {
                     ProfilePage(),
                     duration: const Duration(milliseconds: 500),
                     routeName: 'profile',
-                    transition: Transition.circularReveal,
+                    transition:
+                        GetPlatform.isWeb ? null : Transition.circularReveal,
                   );
                 },
                 child: AppCard(
@@ -239,7 +340,7 @@ class AppDrawer extends StatelessWidget {
                             : Hero(
                                 tag: "avatarIcon",
                                 child: Container(
-                                  padding: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     color: Theme.of(context)
                                         .cardColor
@@ -281,25 +382,26 @@ class AppDrawer extends StatelessWidget {
               const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  _settingsController.isDarkMode.value
-                      ? Get.changeTheme(
-                          AppTheme.light.copyWith(
-                            primaryColor:
-                                _settingsController.primaryColor.value,
-                            appBarTheme: AppBarTheme(
-                              color: _settingsController.primaryColor.value,
-                            ),
-                            bottomNavigationBarTheme:
-                                BottomNavigationBarThemeData(
-                              selectedItemColor:
-                                  _settingsController.primaryColor.value,
-                            ),
-                          ),
-                        )
-                      : Get.changeTheme(AppTheme.dark);
+                  if (_settingsController.isDarkMode.value) {
+                    final box = Get.find<GetStorage>();
+                    var primaryColorName = box.read('primaryColor');
 
-                  _settingsController
-                      .setDarkMode(!_settingsController.isDarkMode.value);
+                    if (primaryColorName != null) {
+                      _settingsController.setTheme(primaryColorName);
+                    } else {
+                      var listColor = _settingsController.listColor;
+                      var listColorName = _settingsController.listColorName;
+                      var primaryColor = _settingsController.primaryColor.value;
+
+                      for (var i = 0; i <= 4; i++) {
+                        if (listColor[i] == primaryColor) {
+                          _settingsController.setTheme(listColorName[i]);
+                        }
+                      }
+                    }
+                  } else {
+                    _settingsController.setDarkMode(true);
+                  }
                 },
                 child: Icon(
                   _settingsController.isDarkMode.value

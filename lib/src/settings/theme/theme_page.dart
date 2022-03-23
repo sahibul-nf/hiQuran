@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
@@ -48,28 +49,54 @@ class ThemePage extends StatelessWidget {
                   onTap: () {
                     switch (i) {
                       case 0:
-                        settingController.setPrimaryColor(_listColor[i]);
-                        settingController.setThemePrimaryColor(_listColor[i]);
+                        settingController.setPrimaryColor(
+                            _listColor[i], _listNameColor[i]);
+                        settingController.setThemePrimaryColor(_listColor[i],
+                            key: _listNameColor[i]);
 
                         break;
                       case 1:
-                        settingController.setPrimaryColor(_listColor[i]);
-                        settingController.setThemePrimaryColor(_listColor[i]);
+                        settingController.setPrimaryColor(
+                          _listColor[i],
+                          _listNameColor[i],
+                        );
+                        settingController.setThemePrimaryColor(
+                          _listColor[i],
+                          key: _listNameColor[i],
+                        );
 
                         break;
                       case 2:
-                        settingController.setPrimaryColor(_listColor[i]);
-                        settingController.setThemePrimaryColor(_listColor[i]);
+                        settingController.setPrimaryColor(
+                          _listColor[i],
+                          _listNameColor[i],
+                        );
+                        settingController.setThemePrimaryColor(
+                          _listColor[i],
+                          key: _listNameColor[i],
+                        );
 
                         break;
                       case 3:
-                        settingController.setPrimaryColor(_listColor[i]);
-                        settingController.setThemePrimaryColor(_listColor[i]);
+                        settingController.setPrimaryColor(
+                          _listColor[i],
+                          _listNameColor[i],
+                        );
+                        settingController.setThemePrimaryColor(
+                          _listColor[i],
+                          key: _listNameColor[i],
+                        );
 
                         break;
                       case 4:
-                        settingController.setPrimaryColor(_listColor[i]);
-                        settingController.setThemePrimaryColor(_listColor[i]);
+                        settingController.setPrimaryColor(
+                          _listColor[i],
+                          _listNameColor[i],
+                        );
+                        settingController.setThemePrimaryColor(
+                          _listColor[i],
+                          key: _listNameColor[i],
+                        );
 
                         break;
                       default:

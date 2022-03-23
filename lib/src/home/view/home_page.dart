@@ -3,7 +3,7 @@ import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/src/home/controller/home_controller.dart';
-import 'package:quran_app/src/profile/controller/user_controller.dart';
+import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_drawer.dart';
 import 'package:unicons/unicons.dart';

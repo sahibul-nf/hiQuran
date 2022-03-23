@@ -12,11 +12,15 @@ class SurahController extends GetxController {
 
   final _verses = <Verse>[].obs;
   List<Verse> get verses => _verses();
+  void resetVerses() {
+    _verses.clear();
+    log("${_verses.length}");
+  }
 
   final _audioUrl = <String>[].obs;
   List<String> get audioUrl => _audioUrl();
 
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   var showTafsir = false.obs;
   var isSave = false.obs;
 
@@ -29,9 +33,8 @@ class SurahController extends GetxController {
   Future fetchListOfSurah() async {
     try {
       final url = Uri.parse("https://api.quran.sutanlab.id/surah");
-      final response = await http.get(url);
-
       isLoading.value = true;
+      final response = await http.get(url);
 
       if (response.statusCode == 200) {
         var map = jsonDecode(response.body);
@@ -52,6 +55,7 @@ class SurahController extends GetxController {
         return true;
       } else {
         log("Opps.. an error occured");
+        return false;
       }
     } catch (e) {
       // throw ServerException();
@@ -59,36 +63,32 @@ class SurahController extends GetxController {
     }
   }
 
-  Future fetchSurahByID(int? id) async {
+  Future<bool> fetchSurahByID(int? id) async {
     final url = Uri.parse("https://api.quran.sutanlab.id/surah/$id");
+    // isLoading.value = true;
+    final response = await http.get(url);
 
-    try {
-      final response = await http.get(url);
-
-      isLoading.value = true;
-
-      if (response.statusCode == 200) {
-        var map = jsonDecode(response.body);
-        var verses = map['data']['verses'];
-        for (var json in (verses as List)) {
-          var verse = Verse.fromJson(json);
-          _verses.add(verse);
-          if (_verses.isNotEmpty) {
-            isLoading.value = false;
-          }
-          if (_listOfSurah.length < 7) {
-            await Future.delayed(const Duration(milliseconds: 1000));
-          }
-          _audioUrl.add(verse.audio!.primary ?? "");
+    if (response.statusCode == 200) {
+      var map = jsonDecode(response.body);
+      var verses = map['data']['verses'];
+      for (var json in (verses as List)) {
+        var verse = Verse.fromJson(json);
+        _verses.add(verse);
+        // if (_verses.isNotEmpty) {
+        // isLoading.value = false;
+        // }
+        if (_listOfSurah.length < 2) {
+          await Future.delayed(const Duration(milliseconds: 500));
         }
-
-        log(_verses.length.toString());
-        log("audios = ${_audioUrl.length}");
-        return true;
+        _audioUrl.add(verse.audio!.primary ?? "");
       }
-    } catch (e) {
-      // throw ServerException();
-      return e;
+
+      log(_verses.length.toString());
+      log("audios = ${_audioUrl.length}");
+      return true;
+    } else {
+      // isLoading.value = false;
+      return false;
     }
   }
 

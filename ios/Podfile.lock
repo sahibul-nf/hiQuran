@@ -70,6 +70,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_native_timezone (0.0.1):
     - Flutter
+  - geocoding (1.0.5):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - google_sign_in (0.0.1):
@@ -121,6 +123,8 @@ PODS:
   - SDWebImage (5.12.4):
     - SDWebImage/Core (= 5.12.4)
   - SDWebImage/Core (5.12.4)
+  - share_plus (0.0.1):
+    - Flutter
   - SwiftyGif (5.4.3)
   - uni_links (0.0.1):
     - Flutter
@@ -139,12 +143,14 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
+  - geocoding (from `.symlinks/plugins/geocoding/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - images_picker (from `.symlinks/plugins/images_picker/ios`)
   - network_info_plus (from `.symlinks/plugins/network_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - uni_links (from `.symlinks/plugins/uni_links/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
@@ -183,6 +189,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_native_timezone:
     :path: ".symlinks/plugins/flutter_native_timezone/ios"
+  geocoding:
+    :path: ".symlinks/plugins/geocoding/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   google_sign_in:
@@ -195,6 +203,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/network_info_plus/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   uni_links:
     :path: ".symlinks/plugins/uni_links/ios"
   url_launcher_ios:
@@ -216,6 +226,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
+  geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   google_sign_in: f669f45933dad48cd218dc3e189726bced3d19f4
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
@@ -231,6 +242,7 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 631cf572cc93dfdfe54162e556410a61f1141928
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
   uni_links: d97da20c7701486ba192624d99bffaaffcfc298a
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de

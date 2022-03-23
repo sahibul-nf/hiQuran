@@ -4,26 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
-import 'package:quran_app/src/home/view/home_page.dart';
-import 'package:quran_app/src/profile/controller/auth_controller.dart';
-import 'package:quran_app/src/profile/controller/user_controller.dart';
+import 'package:quran_app/src/profile/controllers/auth_controller.dart';
+import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';
+import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 class Wrapper extends StatelessWidget {
   Wrapper({Key? key}) : super(key: key);
 
   final _authController = Get.put(AuthControllerImpl());
+  final _settingC = Get.put(SettingsController());
   final userC = Get.put(UserControllerImpl());
 
-  void _sessionCheck() async {
+  Future<void> _sessionCheck() async {
     await GetStorage.init();
     final box = Get.find<GetStorage>();
+
+    final themeColor = box.read('themeColor');
+
+    log("Theme Color : $themeColor");
+    if (themeColor != null) {
+      _settingC.setTheme(themeColor);
+    }
+
+    await Future.delayed(const Duration(seconds: 2));
+
     final session = box.read('user');
     log("Session : $session");
     if (session == null || session == "") {
       // Get.off(SignInPage());
-      Get.offAll(SurahPage());
+      Get.off(SurahPage());
     } else {
       final res = await _authController.recoverSession(session);
       await box.write('user', res?.persistSessionString);
@@ -34,7 +45,7 @@ class Wrapper extends StatelessWidget {
         // if (value.user == null && value.error == "Email not registered") {
         //   Get.off(SignUpPage());
         // } else {
-        Get.offAll(SurahPage());
+        Get.off(SurahPage());
         // }
       });
     }
@@ -42,19 +53,16 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => _sessionCheck(),
-    );
+    Future.wait([_sessionCheck()]);
 
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Spacer(),
+            const Spacer(flex: 3),
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(100),
@@ -64,21 +72,22 @@ class Wrapper extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
                   "assets/icon/icon.png",
-                  width: 120,
+                  width: 100,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
+            const Spacer(flex: 3),
             Text(
               "hiQuran",
               style: AppTextStyle.bigTitle,
             ),
-            const Spacer(flex: 2),
-            DottedCircularProgressIndicatorFb(
-              currentDotColor: Theme.of(context).primaryColor.withOpacity(0.3),
-              defaultDotColor: Theme.of(context).primaryColor,
-              numDots: 9,
-            ),
+            // DottedCircularProgressIndicatorFb(
+            //   currentDotColor:
+            //       Theme.of(context).primaryColor.withOpacity(0.3),
+            //   defaultDotColor: Theme.of(context).primaryColor,
+            //   numDots: 9,
+            // ),
             const Spacer(),
           ],
         ),

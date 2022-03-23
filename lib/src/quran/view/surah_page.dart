@@ -9,6 +9,7 @@ import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_drawer.dart';
 import 'package:unicons/unicons.dart';
 
+// ignore: must_be_immutable
 class SurahPage extends StatelessWidget {
   SurahPage({Key? key}) : super(key: key);
 
@@ -16,8 +17,6 @@ class SurahPage extends StatelessWidget {
 
   final controller = Get.put(SurahController());
   // final settingsController = Get.put(SettingsController());
-
-  bool isHover = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class SurahPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () => _key.currentState!.openDrawer(),
           icon: const Icon(
-            UniconsSolid.apps,
+            UniconsLine.icons,
             color: Colors.white,
           ),
         ),
@@ -39,16 +38,29 @@ class SurahPage extends StatelessWidget {
         elevation: 1,
       ),
       drawer: AppDrawer(),
-      body: Obx(() {
-        return controller.isLoading.value
-            ? const SurahCardShimmer()
-            : ListView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                children: [
-                  Obx(() {
-                    return controller.recenlySurah.name != null
-                        ? Column(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.delayed(const Duration(milliseconds: 1500));
+          controller.fetchListOfSurah();
+        },
+        backgroundColor: Theme.of(context).cardColor,
+        color: Theme.of(context).primaryColor,
+        strokeWidth: 3,
+        triggerMode: RefreshIndicatorTriggerMode.onEdge,
+        child: Obx(() {
+          return controller.isLoading.value
+              ? const SurahCardShimmer()
+              : ListView.separated(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
+                  itemBuilder: (ctx, i) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (controller.recenlySurah.name != null && i == 0)
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -85,43 +97,57 @@ class SurahPage extends StatelessWidget {
                                       controller.recenlySurah.revelation!.id,
                                 ),
                               ),
+                              const SizedBox(height: 10),
                               const Divider(),
-                              const SizedBox(height: 20),
+                              const SizedBox(height: 10),
                             ],
-                          )
-                        : const SizedBox();
-                  }),
-                  for (var item in controller.listOfSurah)
-                    FadeInDown(
-                      child: InkWell(
-                        highlightColor: Colors.white12,
-                        splashColor: Colors.white12,
-                        onTap: () {
-                          Get.to(
-                            SurahDetailPage(
-                              number: item.number,
-                              nameShort: item.name!.arab,
-                              revelation: item.revelation!.id,
-                              nameTransliteration: item.name!.id,
-                              nameTranslation: item.name!.translationId,
-                              numberOfVerses: item.numberOfVerses,
+                          ),
+                        FadeInDown(
+                          child: InkWell(
+                            highlightColor: Colors.white12,
+                            splashColor: Colors.white12,
+                            onTap: () {
+                              Get.to(
+                                SurahDetailPage(
+                                  number: controller.listOfSurah[i].number,
+                                  nameShort:
+                                      controller.listOfSurah[i].name!.arab,
+                                  revelation:
+                                      controller.listOfSurah[i].revelation!.id,
+                                  nameTransliteration:
+                                      controller.listOfSurah[i].name!.id,
+                                  nameTranslation: controller
+                                      .listOfSurah[i].name!.translationId,
+                                  numberOfVerses:
+                                      controller.listOfSurah[i].numberOfVerses,
+                                ),
+                                routeName: 'surah-detail',
+                              );
+                              controller
+                                  .setRecenlySurah(controller.listOfSurah[i]);
+                            },
+                            child: SurahItem(
+                              number: controller.listOfSurah[i].number,
+                              nameShort: controller.listOfSurah[i].name!.arab,
+                              revelation:
+                                  controller.listOfSurah[i].revelation!.id,
+                              nameTransliteration:
+                                  controller.listOfSurah[i].name!.id,
+                              numberOfVerses:
+                                  controller.listOfSurah[i].numberOfVerses,
                             ),
-                            routeName: 'surah-detail',
-                          );
-                          controller.setRecenlySurah(item);
-                        },
-                        child: SurahItem(
-                          number: item.number,
-                          nameShort: item.name!.arab,
-                          revelation: item.revelation!.id,
-                          nameTransliteration: item.name!.id,
-                          numberOfVerses: item.numberOfVerses,
+                          ),
                         ),
-                      ),
-                    ),
-                ],
-              );
-      }),
+                      ],
+                    );
+                  },
+                  separatorBuilder: (ctx, i) {
+                    return const SizedBox(height: 10);
+                  },
+                  itemCount: controller.listOfSurah.length,
+                );
+        }),
+      ),
     );
   }
 }

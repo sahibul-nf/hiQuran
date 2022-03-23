@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
+import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 // import 'package:quran_app/src/quran/controller/audio_player_controller.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
@@ -10,6 +11,8 @@ import 'package:quran_app/src/quran/widget/surah_card.dart';
 import 'package:quran_app/src/quran/widget/tafsir_view.dart';
 import 'package:quran_app/src/quran/widget/verse_item.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
+import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:quran_app/src/widgets/app_loading.dart';
 
 // ignore: must_be_immutable
 class SurahDetailPage extends StatelessWidget {
@@ -36,9 +39,7 @@ class SurahDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.verses.clear();
-    controller.audioUrl.clear();
-    controller.fetchSurahByID(number);
+    controller.resetVerses();
 
     return Scaffold(
       appBar: AppBar(
@@ -97,14 +98,19 @@ class SurahDetailPage extends StatelessWidget {
       // floatingActionButtonLocation: audioPlayerController.isPlay.value == false
       //     ? FloatingActionButtonLocation.endDocked
       //     : FloatingActionButtonLocation.centerDocked,
-      body: Obx(() {
-        return Stack(
-          children: [
-            controller.isLoading.value
-                ? const Center(
-                    child: SurahCardShimmer(),
-                  )
-                : SingleChildScrollView(
+      body: FutureBuilder(
+        future: Future.delayed(
+          const Duration(milliseconds: 5000),
+          () => controller.fetchSurahByID(number),
+        ),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const AppLoading();
+          } else {
+            return Obx(() {
+              return Stack(
+                children: [
+                  SingleChildScrollView(
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
@@ -119,7 +125,7 @@ class SurahDetailPage extends StatelessWidget {
                         // const SizedBox(height: 10),
                         for (var verse in controller.verses)
                           FadeInDown(
-                            delay: const Duration(milliseconds: 500),
+                            from: 50,
                             child: VerseItem(
                               numberInSurah: verse.number!.inSurah,
                               textArab: verse.text!.arab,
@@ -140,10 +146,13 @@ class SurahDetailPage extends StatelessWidget {
                       ],
                     ),
                   ),
-            if (controller.showTafsir.value) tafsirView,
-          ],
-        );
-      }),
+                  if (controller.showTafsir.value) tafsirView,
+                ],
+              );
+            });
+          }
+        },
+      ),
     );
   }
 
