@@ -11,14 +11,12 @@ import 'package:quran_app/src/profile/controllers/auth_controller.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/models/user.dart';
 import 'package:quran_app/src/profile/views/signin_page.dart';
-import 'package:quran_app/src/profile/widgets/paste_avatarurl.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/wrapper.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:unicons/unicons.dart';
-import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:wiredash/wiredash.dart';
 
 import '../../../helper/global_state.dart';

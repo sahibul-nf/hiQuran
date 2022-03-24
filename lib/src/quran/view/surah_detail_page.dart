@@ -2,16 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 // import 'package:quran_app/src/quran/controller/audio_player_controller.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
-import 'package:quran_app/src/quran/widget/shimmer/surah_card_shimmer.dart';
 import 'package:quran_app/src/quran/widget/surah_card.dart';
 import 'package:quran_app/src/quran/widget/tafsir_view.dart';
 import 'package:quran_app/src/quran/widget/verse_item.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
-import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/widgets/app_loading.dart';
 
 // ignore: must_be_immutable
@@ -50,59 +47,8 @@ class SurahDetailPage extends StatelessWidget {
         centerTitle: true,
         elevation: 1,
       ),
-      // floatingActionButton: Obx(() {
-      //   return AnimatedContainer(
-      //     duration: const Duration(milliseconds: 200),
-      //     height: 50,
-      //     width: audioPlayerController.isPlay.value
-      //         ? MediaQuery.of(context).size.width * 0.9
-      //         : 50,
-      //     margin: const EdgeInsets.symmetric(horizontal: 10),
-      //     decoration: BoxDecoration(
-      //       color: Theme.of(context).primaryColor.withOpacity(0.9),
-      //       borderRadius: BorderRadius.circular(30),
-      //     ),
-      //     child: !audioPlayerController.isPlay.value
-      //         ? IconButton(
-      //             onPressed: () {
-      //               audioPlayerController.play(url: controller.audioUrl);
-      //             },
-      //             padding: const EdgeInsets.all(0),
-      //             icon: Unicon(
-      //               audioPlayerController.isPlay.value
-      //                   ? Unicons.uniPause
-      //                   : Unicons.uniPlay,
-      //               color: Theme.of(context).cardColor,
-      //             ),
-      //           )
-      //         : Row(
-      //             mainAxisAlignment: MainAxisAlignment.center,
-      //             children: [
-      //               IconButton(
-      //                 onPressed: () {
-      //                   audioPlayerController.stop();
-      //                   audioPlayerController.play(url: []);
-      //                 },
-      //                 padding: const EdgeInsets.all(0),
-      //                 icon: Unicon(
-      //                   audioPlayerController.isPlay.value
-      //                       ? Unicons.uniPause
-      //                       : Unicons.uniPlay,
-      //                   color: Theme.of(context).cardColor,
-      //                 ),
-      //               ),
-      //             ],
-      //           ),
-      //   );
-      // }),
-      // floatingActionButtonLocation: audioPlayerController.isPlay.value == false
-      //     ? FloatingActionButtonLocation.endDocked
-      //     : FloatingActionButtonLocation.centerDocked,
       body: FutureBuilder(
-        future: Future.delayed(
-          const Duration(milliseconds: 5000),
-          () => controller.fetchSurahByID(number),
-        ),
+        future: controller.fetchSurahByID(number),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const AppLoading();
