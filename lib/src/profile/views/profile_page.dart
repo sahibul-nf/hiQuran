@@ -19,6 +19,7 @@ import 'package:quran_app/src/wrapper.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:unicons/unicons.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
+import 'package:wiredash/wiredash.dart';
 
 import '../../../helper/global_state.dart';
 
@@ -200,11 +201,12 @@ class ProfilePage extends StatelessWidget {
                         icon: UniconsLine.feedback,
                         title: "Give Feedback",
                         onPressed: () {
-                          url.launch("https://s.id/hiQuran").then((value) {
-                            if (!value) {
-                              Get.snackbar("Opps...", "An error occured");
-                            }
-                          });
+                          // url.launch("https://s.id/hiQuran").then((value) {
+                          //   if (!value) {
+                          //     Get.snackbar("Opps...", "An error occured");
+                          //   }
+                          // });
+                          Wiredash.of(context)?.show();
                         },
                       ),
                       const Spacer(),

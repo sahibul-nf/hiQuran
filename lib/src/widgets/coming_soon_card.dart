@@ -5,6 +5,7 @@ import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:unicons/unicons.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
+import 'package:wiredash/wiredash.dart';
 
 class ComingSoonCard extends StatelessWidget {
   const ComingSoonCard({Key? key}) : super(key: key);
@@ -51,11 +52,12 @@ class ComingSoonCard extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             onPressed: () {
               Get.back();
-              url.launch("https://s.id/hiQuran").then((value) {
-                if (!value) {
-                  Get.snackbar("Opps...", "An error occured");
-                }
-              });
+              // url.launch("https://s.id/hiQuran").then((value) {
+              //   if (!value) {
+              //     Get.snackbar("Opps...", "An error occured");
+              //   }
+              // });
+              Wiredash.of(context)?.show();
             },
           ),
           const Spacer(),

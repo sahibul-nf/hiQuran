@@ -59,6 +59,7 @@ dependencies:
   shimmer: ^2.0.0
   supabase_flutter: ^0.2.12
   unicons: ^2.1.0
+  wiredash: ^0.7.0+1
 
 dev_dependencies:
   flutter_lints: ^1.0.0

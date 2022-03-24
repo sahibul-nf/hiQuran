@@ -9,30 +9,38 @@ import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/wrapper.dart';
+import 'package:wiredash/wiredash.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'hiQuran',
-      darkTheme: AppTheme.dark,
-      theme: AppTheme.light,
-      // home: SignInPage(),
-      home: Wrapper(),
-      // home: HomePage(),
-      // home: UploadAvatarPage(),
-      // home: MainPage(),
-      // initialRoute: "/",
-      getPages: [
-        GetPage(name: "/", page: () => Wrapper()),
-        GetPage(name: "/home", page: () => HomePage()),
-        GetPage(name: "/surah", page: () => SurahPage()),
-        GetPage(name: "/prayer-times", page: () => PrayerTimePage()),
-        GetPage(name: "/qiblat", page: () => QiblatPage())
-      ],
+    return Wiredash(
+      projectId: "hiquran-la8pogf",
+      secret: "Sn698m834hExb9tINXq1pdXjSRGMMAFs",
+      navigatorKey: _navigatorKey,
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: _navigatorKey,
+        title: 'hiQuran',
+        darkTheme: AppTheme.dark,
+        theme: AppTheme.light,
+        // home: SignInPage(),
+        home: Wrapper(),
+        // home: HomePage(),
+        // home: UploadAvatarPage(),
+        // home: MainPage(),
+        // initialRoute: "/",
+        getPages: [
+          GetPage(name: "/", page: () => Wrapper()),
+          GetPage(name: "/home", page: () => HomePage()),
+          GetPage(name: "/surah", page: () => SurahPage()),
+          GetPage(name: "/prayer-times", page: () => PrayerTimePage()),
+          GetPage(name: "/qiblat", page: () => QiblatPage())
+        ],
+      ),
     );
   }
 }

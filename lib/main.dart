@@ -23,5 +23,5 @@ void main() async {
 
   Get.put<GetStorage>(GetStorage());
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
