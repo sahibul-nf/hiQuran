@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/src/home/view/home_page.dart';
-import 'package:quran_app/src/prayer_time/models/prayer_time.dart';
 import 'package:quran_app/src/prayer_time/views/prayer_time_page.dart';
 import 'package:quran_app/src/prayer_time/views/qiblat_page.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';

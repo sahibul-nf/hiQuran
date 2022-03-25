@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
-import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:unicons/unicons.dart';
 
 class PrayerTimeItem extends StatelessWidget {

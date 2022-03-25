@@ -1,12 +1,9 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
-import 'package:quran_app/src/home/view/home_page.dart';
 import 'package:quran_app/src/prayer_time/views/prayer_time_page.dart';
-import 'package:quran_app/src/prayer_time/views/qiblat_page.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/views/profile_page.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';

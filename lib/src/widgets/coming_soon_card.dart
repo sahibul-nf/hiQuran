@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:images_picker/images_picker.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
-import 'package:unicons/unicons.dart';
-import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:wiredash/wiredash.dart';
 
 class ComingSoonCard extends StatelessWidget {

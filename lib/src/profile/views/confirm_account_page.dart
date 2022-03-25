@@ -9,7 +9,6 @@ import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/bricks/my_widgets/my_circle_avatar.dart';
 import 'package:quran_app/bricks/my_widgets/input_text.dart';
-import 'package:quran_app/src/home/view/home_page.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 

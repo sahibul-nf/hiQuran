@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:adhan/adhan.dart';
@@ -148,8 +147,8 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
   void getAddressLocationDetail(double latitude, double longitude) async {
     List<Placemark> placeMarks;
     try {
-      print(latitude);
-      print(longitude);
+      log("$latitude");
+      log("$longitude");
       placeMarks = await placemarkFromCoordinates(
         latitude,
         longitude,
@@ -157,7 +156,7 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
 
       var address = placeMarks[0];
 
-      print(address);
+      log("$address");
       currentAddress(address);
     } on PlatformException catch (e) {
       log(e.toString());
@@ -166,7 +165,7 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
         placeMarks = await placemarkFromCoordinates(latitude, longitude);
         var address = placeMarks[0];
 
-        print(address);
+        log("$address");
         currentAddress(address);
       } catch (e) {
         Get.snackbar(

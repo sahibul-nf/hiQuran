@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/google_button_1.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/bricks/my_widgets/input_text.dart';
-import 'package:quran_app/src/home/view/home_page.dart';
 import 'package:quran_app/src/profile/controllers/auth_controller.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/formatter/response_formatter.dart';
