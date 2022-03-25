@@ -146,24 +146,28 @@ class PrayerTimePage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 2),
-                          Text.rich(
-                            TextSpan(
-                              text: (prayer.name == "none")
-                                  ? "Qiyam"
-                                  : prayer.name.capitalizeFirst,
-                              children: [
-                                const TextSpan(text: " - "),
-                                TextSpan(
-                                  text: address.isBlank!
-                                      ? ""
-                                      : address.value.country,
-                                  style: AppTextStyle.normal.copyWith(
-                                    color: Theme.of(context).primaryColor,
+                          Obx(
+                            () => Text.rich(
+                              TextSpan(
+                                text: (prayerTimeC.nextPrayer.value.name ==
+                                        "none")
+                                    ? "Qiyam"
+                                    : prayerTimeC
+                                        .nextPrayer.value.name.capitalizeFirst,
+                                children: [
+                                  const TextSpan(text: " - "),
+                                  TextSpan(
+                                    text: address.isBlank!
+                                        ? ""
+                                        : address.value.country,
+                                    style: AppTextStyle.normal.copyWith(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                              style: AppTextStyle.normal,
                             ),
-                            style: AppTextStyle.normal,
                           ),
                           const SizedBox(height: 6),
                           Row(
@@ -303,7 +307,7 @@ class PrayerTimePage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 IconButton(
                                   onPressed: () {
-                                    Get.bottomSheet(const ComingSoonCard());
+                                    Get.bottomSheet(ComingSoonCard());
                                   },
                                   icon: const Icon(
                                     UniconsLine.volume_mute,

@@ -181,7 +181,7 @@ class AppDrawer extends StatelessWidget {
                 },
                 onTap: () {
                   Get.back();
-                  Get.bottomSheet(const ComingSoonCard());
+                  Get.bottomSheet(ComingSoonCard());
                   // TODO: set this route future
 
                   // Get.to(QiblatPage());
