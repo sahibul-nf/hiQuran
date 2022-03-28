@@ -207,7 +207,6 @@ class ProfilePage extends StatelessWidget {
                           Wiredash.of(context)?.show();
                         },
                       ),
-                      const Spacer(),
                       const SizedBox(height: 40),
                       if (_userController.user.email == null)
                         MyButton(
