@@ -21,6 +21,7 @@ class ComingSoonCard extends StatelessWidget {
         boxShadow: [AppShadow.card],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Image.asset(
             "assets/illustration/01. Parents Teach Children to Read The Quran.png",
@@ -42,8 +43,7 @@ class ComingSoonCard extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const Spacer(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           MyButton(
             text: "Give Feedback",
             width: MediaQuery.of(context).size.width,
@@ -57,7 +57,7 @@ class ComingSoonCard extends StatelessWidget {
               Wiredash.of(context)?.show();
             },
           ),
-          const Spacer(),
+          const SizedBox(height: 20),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,6 +12,8 @@ import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/widgets/coming_soon_card.dart';
 import 'package:unicons/unicons.dart';
+
+import '../prayer_time/views/qiblat_page.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
@@ -178,10 +179,10 @@ class AppDrawer extends StatelessWidget {
                 },
                 onTap: () {
                   Get.back();
-                  Get.bottomSheet(ComingSoonCard());
+                  // Get.bottomSheet(ComingSoonCard());
                   // TODO: set this route future
 
-                  // Get.to(QiblatPage());
+                  Get.to(QiblatPage());
                 },
                 child: AppCard(
                   hMargin: 0,

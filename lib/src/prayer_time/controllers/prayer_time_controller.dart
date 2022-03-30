@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:adhan/adhan.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ const String _kLocationServicesDisabledMessage =
     'Location services are disabled.';
 const String _kPermissionDeniedMessage = 'Permission denied.';
 const String _kPermissionDeniedForeverMessage =
-    'Location permissions are permanently denied, we cannot request permissions.';
+    "Please, enable this app's location permission in settings to use this feature.";
 const String _kPermissionGrantedMessage = 'Permission granted.';
 
 abstract class PrayerTimeController extends GetxController {
@@ -40,6 +41,8 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
   var currentPrayer = Prayer.none.obs;
   var currentAddress = Placemark().obs;
   var leftOver = 0.obs;
+  var sensorIsSupported = false.obs;
+  var qiblahDirection = 0.0.obs;
 
   @override
   Future<LocationResultFormatter> handleLocationPermission() async {
@@ -98,6 +101,7 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
       currentLocation(loc);
       getPrayerTimesToday(location.latitude, location.longitude);
       getAddressLocationDetail(location.latitude, location.longitude);
+      getQiblah(location.latitude, location.longitude);
     }
   }
 
@@ -172,6 +176,24 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
             "Opps", 'Address was not retrieved, please fill out manually');
       }
     }
+  }
+
+  void getQiblah(double latitude, double longitude) {
+    final myCoordinates = Coordinates(latitude, longitude);
+
+    final qiblah = Qibla(myCoordinates);
+    log("Qiblah: ${qiblah.direction}");
+    qiblahDirection.value = qiblah.direction;
+  }
+
+  Future<void> checkDeviceSensorSupport() async {
+    FlutterQiblah.androidDeviceSensorSupport().then((value) {
+      if (value != null) {
+        sensorIsSupported.value = value;
+        log("Check $value");
+      }
+      log("Check $value");
+    });
   }
 
   void getPrayerTimeCustom() {

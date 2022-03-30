@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:quran_app/bricks/my_widgets/my_outline_button.dart';
+import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../bricks/my_widgets/my_button.dart';
@@ -7,7 +12,8 @@ import '../settings/theme/app_theme.dart';
 
 class AppPermissionStatus extends StatelessWidget {
   final String message;
-  const AppPermissionStatus({Key? key, required this.message}) : super(key: key);
+  const AppPermissionStatus({Key? key, required this.message})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +28,8 @@ class AppPermissionStatus extends StatelessWidget {
         boxShadow: [AppShadow.card],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Spacer(),
           Container(
             padding: const EdgeInsets.all(25),
             decoration: BoxDecoration(
@@ -31,30 +37,55 @@ class AppPermissionStatus extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Icon(
-              UniconsLine.lock_access,
+              UniconsLine.map_marker_slash,
               size: 90,
               color: Theme.of(context).primaryColor,
             ),
           ),
           const SizedBox(height: 20),
           Text(
-            message,
-            style: AppTextStyle.normal.copyWith(
-              fontSize: 14,
-              color: Colors.grey,
+            "Opps...",
+            style: AppTextStyle.title.copyWith(
+              fontSize: 20,
             ),
             textAlign: TextAlign.center,
           ),
-          const Spacer(),
-          // const SizedBox(height: 16),
+          const SizedBox(height: 6),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              message,
+              style: AppTextStyle.small.copyWith(
+                color: Colors.grey,
+                fontSize: 14,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          // const Spacer(),
+          const SizedBox(height: 20),
           MyButton(
             text: "Allow Permission",
             width: MediaQuery.of(context).size.width,
             onPressed: () {
-              Get.back();
+              final prayerC = Get.find<PrayerTimeControllerImpl>();
+              prayerC.openAppSetting().then((value) {
+                if (!value) {
+                  Get.snackbar("Opps", "Cannot open setting");
+                }
+              });
             },
           ),
-          const Spacer(),
+          const SizedBox(height: 10),
+          MyOutlinedButton(
+            text: "Later",
+            width: MediaQuery.of(context).size.width,
+            onPressed: () {
+              // Get.back();
+              
+            },
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );

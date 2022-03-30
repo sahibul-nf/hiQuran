@@ -46,7 +46,7 @@ class PrayerTimePage extends StatelessWidget {
           await Future.delayed(const Duration(milliseconds: 1500));
           toNextPrayer();
         },
-        displacement: 250,
+        // displacement: 250,
         backgroundColor: Theme.of(context).cardColor,
         color: Theme.of(context).primaryColor,
         strokeWidth: 3,
@@ -149,11 +149,14 @@ class PrayerTimePage extends StatelessWidget {
                           Obx(
                             () => Text.rich(
                               TextSpan(
-                                text: (prayerTimeC.nextPrayer.value.name ==
-                                        "none")
+                                text: (nextH != null &&
+                                        prayerTimeC.nextPrayer.value.name ==
+                                            "none")
                                     ? "Qiyam"
-                                    : prayerTimeC
-                                        .nextPrayer.value.name.capitalizeFirst,
+                                    : (nextH == null)
+                                        ? ""
+                                        : prayerTimeC.nextPrayer.value.name
+                                            .capitalizeFirst,
                                 children: [
                                   const TextSpan(text: " - "),
                                   TextSpan(
@@ -307,7 +310,7 @@ class PrayerTimePage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 IconButton(
                                   onPressed: () {
-                                    Get.bottomSheet(ComingSoonCard());
+                                    Get.bottomSheet(const ComingSoonCard());
                                   },
                                   icon: const Icon(
                                     UniconsLine.volume_mute,
@@ -338,10 +341,16 @@ class PrayerTimePage extends StatelessWidget {
       ));
     } else {
       var location = prayerTimeC.currentLocation.value;
-      prayerTimeC.getPrayerTimesToday(
-        location.latitude,
-        location.longitude,
-      );
+      if (location.latitude != 0) {
+        prayerTimeC.getPrayerTimesToday(
+          location.latitude,
+          location.longitude,
+        );
+        prayerTimeC.getQiblah(location.latitude, location.longitude);
+      } else {
+        log("this");
+        await prayerTimeC.getLocation();
+      }
     }
   }
 }

@@ -43,9 +43,10 @@ dependencies:
   flutter_iconly: ^1.0.2
   flutter_native_timezone: ^2.0.0
   flutter_offline: ^2.1.0
+  flutter_qiblah: ^2.0.2
   flutter_staggered_animations: ^1.0.0
   geocoding: ^2.0.4
-  geolocator: ^8.2.0
+  geolocator: ^7.6.0
   get: ^4.6.1
   get_storage: ^2.0.3
   google_fonts: ^2.3.1
