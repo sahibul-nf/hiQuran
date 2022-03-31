@@ -45,6 +45,7 @@ dependencies:
   flutter_offline: ^2.1.0
   flutter_qiblah: ^2.0.2
   flutter_staggered_animations: ^1.0.0
+  flutter_svg: ^1.0.3
   geocoding: ^2.0.4
   geolocator: ^7.6.0
   get: ^4.6.1

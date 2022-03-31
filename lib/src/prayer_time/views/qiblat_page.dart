@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
@@ -50,13 +51,19 @@ class QiblatPage extends StatelessWidget {
 
             final qiblahDirection = snapshot.data;
 
+            double direction =
+                ((qiblahDirection?.direction ?? 0) * (pi / 180) * -1);
+
+            double qiblah = ((qiblahDirection?.qiblah ?? 0) * (pi / 180) * -1);
+            String offset = qiblahDirection!.offset.toStringAsFixed(2);
+
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 70),
+                  // const SizedBox(height: 70),
                   Obx(
                     () => Text(
                       "Qiblat\n"
@@ -64,7 +71,7 @@ class QiblatPage extends StatelessWidget {
                       style: AppTextStyle.bigTitle,
                     ),
                   ),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 70),
                   Stack(
                     alignment: Alignment.center,
                     children: [
@@ -79,80 +86,87 @@ class QiblatPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(200),
                           ),
                           child: Container(
-                            height: 200,
-                            width: 200,
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(
-                                    UniconsLine.compass,
-                                    size: 110,
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(0.7),
-                                  ),
+                              height: 200,
+                              width: 200,
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: Transform.rotate(
+                                // origin: Offset.fromDirection(direction),
+                                angle: direction,
+                                child: SvgPicture.asset(
+                                  "assets/illustration/compass.svg",
                                 ),
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Text(
-                                    "N",
-                                    style: AppTextStyle.title.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "W",
-                                    style: AppTextStyle.title.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "E",
-                                    style: AppTextStyle.title.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Text(
-                                    "S",
-                                    style: AppTextStyle.title.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                              )
+                              // Stack(
+                              //   children: [
+                              //     Align(
+                              //       alignment: Alignment.center,
+                              //       child: Icon(
+                              //         UniconsLine.compass,
+                              //         size: 110,
+                              //         color: Theme.of(context)
+                              //             .primaryColor
+                              //             .withOpacity(0.7),
+                              //       ),
+                              //     ),
+                              //     Align(
+                              //       alignment: Alignment.topCenter,
+                              //       child: Text(
+                              //         "N",
+                              //         style: AppTextStyle.title.copyWith(
+                              //           color: Theme.of(context).primaryColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Align(
+                              //       alignment: Alignment.centerLeft,
+                              //       child: Text(
+                              //         "W",
+                              //         style: AppTextStyle.title.copyWith(
+                              //           color: Theme.of(context).primaryColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Align(
+                              //       alignment: Alignment.centerRight,
+                              //       child: Text(
+                              //         "E",
+                              //         style: AppTextStyle.title.copyWith(
+                              //           color: Theme.of(context).primaryColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     Align(
+                              //       alignment: Alignment.bottomCenter,
+                              //       child: Text(
+                              //         "S",
+                              //         style: AppTextStyle.title.copyWith(
+                              //           color: Theme.of(context).primaryColor,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                              ),
                         ),
                       ),
                       Align(
                         alignment: Alignment.center,
                         child: Transform.rotate(
-                          angle: ((qiblahDirection?.qiblah ?? 0) *
-                              (pi / 180) *
-                              -1),
+                          // origin: Offset.fromDirection(direction),
+                          angle: qiblah,
                           alignment: Alignment.center,
                           child: Column(
                             children: [
                               Image.asset(
                                 "assets/illustration/3D-Kaaba.png",
                                 width: 60,
+                                semanticLabel: "Kaaba",
                               ),
                               Container(
                                 height: 300,
@@ -178,13 +192,13 @@ class QiblatPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Positioned(
-                        bottom: 10,
-                        child: Text(
-                          "${qiblahDirection?.offset.toStringAsFixed(2)}°",
-                          style: AppTextStyle.normal,
-                        ),
-                      ),
+                      // Positioned(
+                      //   bottom: 10,
+                      //   child: Text(
+                      //     "$offset°",
+                      //     style: AppTextStyle.normal,
+                      //   ),
+                      // ),
                     ],
                   ),
                   // const SizedBox(height: 10),
