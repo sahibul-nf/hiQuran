@@ -6,19 +6,22 @@ class AppShimmer extends StatelessWidget {
   final double? height;
   final double? width;
   final double radius;
+  final Color? color;
 
   const AppShimmer({
     Key? key,
     required this.height,
     this.width,
     this.radius = 20,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      highlightColor: Theme.of(context).cardColor.withOpacity(0.1),
-      baseColor: Theme.of(context).cardColor,
+      highlightColor: color?.withOpacity(0.2) ??
+          Theme.of(context).cardColor.withOpacity(0.1),
+      baseColor: color ?? Theme.of(context).cardColor,
       child: Container(
         height: height,
         width: width,

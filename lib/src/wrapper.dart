@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 import 'package:quran_app/src/profile/controllers/auth_controller.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/quran/view/surah_page.dart';
@@ -33,8 +32,7 @@ class Wrapper extends StatelessWidget {
     final session = box.read('user');
     log("Session : $session");
     if (session == null || session == "") {
-      // Get.off(SignInPage());
-      Get.off(SurahPage());
+      Get.off(() => SurahPage());
     } else {
       final res = await _authController.recoverSession(session);
       await box.write('user', res?.persistSessionString);

@@ -38,7 +38,7 @@ class InputText extends StatelessWidget {
         prefixIcon: prefixIcon,
         prefixIconColor: Theme.of(context).primaryColor,
         suffixIcon: suffixIcon,
-        
+
         // prefix: icon,
         filled: true,
         fillColor: Theme.of(context).cardColor,

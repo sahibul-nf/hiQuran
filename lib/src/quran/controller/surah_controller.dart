@@ -5,10 +5,32 @@ import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 class SurahController extends GetxController {
   final _listOfSurah = <Surah>[].obs;
   List<Surah> get listOfSurah => _listOfSurah();
+
+  final _listOfSearchedSurah = <Surah>{}.obs;
+  Set<Surah> get listOfSerchedSurah => _listOfSearchedSurah().obs;
+  void resetListOfSearchedSurah() {
+    _listOfSearchedSurah.clear();
+  }
+
+  searchSurah(String query) {
+    if (query.isEmpty) {
+      _listOfSearchedSurah.clear();
+    } else {
+      for (var item in _listOfSurah) {
+        double similiarity = query.similarityTo(item.name?.id?.toLowerCase());
+        String s = "${item.name?.id} = $similiarity";
+        if (similiarity >= 0.7) {
+          log(s);
+          _listOfSearchedSurah.add(item);
+        }
+      }
+    }
+  }
 
   final _verses = <Verse>[].obs;
   List<Verse> get verses => _verses();
@@ -74,12 +96,10 @@ class SurahController extends GetxController {
       for (var json in (verses as List)) {
         var verse = Verse.fromJson(json);
         _verses.add(verse);
-        // if (_verses.isNotEmpty) {
         // isLoading.value = false;
+        // if (_verses.length < 2) {
+        //   await Future.delayed(const Duration(milliseconds: 200));
         // }
-        if (_listOfSurah.length < 2) {
-          await Future.delayed(const Duration(milliseconds: 500));
-        }
         _audioUrl.add(verse.audio!.primary ?? "");
       }
 

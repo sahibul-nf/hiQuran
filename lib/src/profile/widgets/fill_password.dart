@@ -108,7 +108,8 @@ class FillPassword extends StatelessWidget {
                     },
             ),
           ),
-          const Spacer(),
+          // const Spacer(),
+          const SizedBox(height: 20),
         ],
       ),
     );

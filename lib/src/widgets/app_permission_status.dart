@@ -12,7 +12,14 @@ import '../settings/theme/app_theme.dart';
 
 class AppPermissionStatus extends StatelessWidget {
   final String message;
-  const AppPermissionStatus({Key? key, required this.message})
+  final IconData icon;
+  final String title;
+  final Function() onPressed;
+  const AppPermissionStatus(
+      {Key? key,
+      required this.message,
+      required this.icon,
+      required this.title, required this.onPressed})
       : super(key: key);
 
   @override
@@ -37,14 +44,14 @@ class AppPermissionStatus extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Icon(
-              UniconsLine.map_marker_slash,
+              icon,
               size: 90,
               color: Theme.of(context).primaryColor,
             ),
           ),
           const SizedBox(height: 20),
           Text(
-            "Opps...",
+            title,
             style: AppTextStyle.title.copyWith(
               fontSize: 20,
             ),
@@ -65,24 +72,16 @@ class AppPermissionStatus extends StatelessWidget {
           // const Spacer(),
           const SizedBox(height: 20),
           MyButton(
-            text: "Allow Permission",
+            text: "Allow",
             width: MediaQuery.of(context).size.width,
-            onPressed: () {
-              final prayerC = Get.find<PrayerTimeControllerImpl>();
-              prayerC.openAppSetting().then((value) {
-                if (!value) {
-                  Get.snackbar("Opps", "Cannot open setting");
-                }
-              });
-            },
+            onPressed: onPressed,
           ),
           const SizedBox(height: 10),
           MyOutlinedButton(
-            text: "Later",
+            text: "Don't Allow",
             width: MediaQuery.of(context).size.width,
             onPressed: () {
-              // Get.back();
-              
+              Get.back();
             },
           ),
           const SizedBox(height: 20),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/widgets/app_shimmer.dart';
 
 class SurahCardShimmer extends StatelessWidget {
@@ -10,11 +12,41 @@ class SurahCardShimmer extends StatelessWidget {
       children: [
         const SizedBox(height: 10),
         for (var i = 0; i < 7; i++)
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            child: AppShimmer(
-              height: 70,
-              
+          AppCard(
+            vMargin: 10,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppShimmer(
+                  color: Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                  height: 45,
+                  width: 45,
+                  radius: 50,
+                ),
+                const SizedBox(width: 20),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppShimmer(
+                        color:
+                            Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                        height: 20,
+                        width: MediaQuery.of(context).size.width,
+                        radius: 50,
+                      ),
+                      const SizedBox(height: 10),
+                      AppShimmer(
+                        color:
+                            Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                        height: 20,
+                        width: MediaQuery.of(context).size.width / 3,
+                        radius: 50,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           )
       ],

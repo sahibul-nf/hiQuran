@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 class SurahItem extends StatelessWidget {
   SurahItem({
@@ -13,12 +13,18 @@ class SurahItem extends StatelessWidget {
     this.revelation,
     this.nameShort,
     this.numberOfVerses,
+    this.width,
+    this.isSearch = false,
+    this.term,
   }) : super(key: key);
   final int? number;
   final String? nameTransliteration;
   final String? revelation;
   final String? nameShort;
   final int? numberOfVerses;
+  final double? width;
+  final bool isSearch;
+  final String? term;
 
   final controller = Get.find<SurahController>();
   final settingController = Get.put(SettingsController());
@@ -27,7 +33,7 @@ class SurahItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      width: size.width,
+      width: width ?? size.width,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       // margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -71,7 +77,21 @@ class SurahItem extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("$nameTransliteration", style: AppTextStyle.title),
+                    (isSearch)
+                        ? SubstringHighlight(
+                            text: "$nameTransliteration",
+                            textStyle: AppTextStyle.title.copyWith(
+                              color: Get.isDarkMode
+                                  ? Colors.grey
+                                  : ColorPalletes.bgDarkColor,
+                            ),
+                            term: term,
+                            textStyleHighlight: AppTextStyle.title.copyWith(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          )
+                        : Text("$nameTransliteration",
+                            style: AppTextStyle.title),
                     const SizedBox(height: 4),
                     Row(
                       children: [

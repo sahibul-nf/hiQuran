@@ -229,7 +229,7 @@ class AppDrawer extends StatelessWidget {
                 },
                 onTap: () {
                   Get.back();
-                  Get.to(const SettingsPage());
+                  Get.to(SettingsPage());
                 },
                 child: AppCard(
                   hMargin: 0,

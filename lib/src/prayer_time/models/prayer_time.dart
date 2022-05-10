@@ -33,3 +33,4 @@ class PrayerTime extends Equatable {
         lastThirdOfTheNight,
       ];
 }
+

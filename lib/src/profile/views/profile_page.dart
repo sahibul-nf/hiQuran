@@ -14,6 +14,7 @@ import 'package:quran_app/src/profile/views/signin_page.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
+import 'package:quran_app/src/widgets/coming_soon_card.dart';
 import 'package:quran_app/src/wrapper.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:unicons/unicons.dart';
@@ -176,14 +177,16 @@ class ProfilePage extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 24),
                       if (_userController.user.email != null)
                         ProfileItem(
                           icon: UniconsLine.edit_alt,
                           title: "Edit Profile",
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.bottomSheet(const ComingSoonCard());
+                          },
                         ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 16),
                       ProfileItem(
                         icon: UniconsLine.share_alt,
                         title: "Share hiQuran",
@@ -194,16 +197,11 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 16),
                       ProfileItem(
                         icon: UniconsLine.feedback,
                         title: "Give Feedback",
                         onPressed: () {
-                          // url.launch("https://s.id/hiQuran").then((value) {
-                          //   if (!value) {
-                          //     Get.snackbar("Opps...", "An error occured");
-                          //   }
-                          // });
                           Wiredash.of(context)?.show();
                         },
                       ),
@@ -267,7 +265,7 @@ class ProfileItem extends StatelessWidget {
       child: AppCard(
         hMargin: 0,
         vPadding: 10,
-        radius: 16,
+        radius: 15,
         color: settingController.isDarkMode.value
             ? Theme.of(context).cardColor
             : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),

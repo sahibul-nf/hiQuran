@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
+import 'package:quran_app/helper/constans.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:wiredash/wiredash.dart';
 
@@ -24,7 +25,7 @@ class ComingSoonCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Image.asset(
-            "assets/illustration/01. Parents Teach Children to Read The Quran.png",
+            AssetsName.illReadTheQuran,
             width: 210,
           ),
           Text(

@@ -1,16 +1,19 @@
 import 'dart:developer';
 
 import 'package:adhan/adhan.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/src/prayer_time/formatters/result_formatter.dart';
 import 'package:quran_app/src/prayer_time/models/prayer_time.dart';
 import 'package:quran_app/src/widgets/app_permission_status.dart';
+import 'package:unicons/unicons.dart';
 
-var api = "https://waktusholat.org/api/docs/today";
+const api = "https://waktusholat.org/api/docs/today";
 
 class _CurrentLocation {
   double latitude;
@@ -43,6 +46,11 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
   var leftOver = 0.obs;
   var sensorIsSupported = false.obs;
   var qiblahDirection = 0.0.obs;
+
+  final cT = CountDownController();
+
+  /// Load location state
+  var isLoadLocation = false.obs;
 
   @override
   Future<LocationResultFormatter> handleLocationPermission() async {
@@ -85,12 +93,26 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
 
   @override
   Future<void> getLocation() async {
+    // enabled load location state
+    isLoadLocation.value = true;
     final handlePermission = await handleLocationPermission();
 
     if (!handlePermission.result) {
-      Get.bottomSheet(AppPermissionStatus(
-        message: handlePermission.error.toString(),
-      ));
+      Get.bottomSheet(
+        AppPermissionStatus(
+          icon: UniconsLine.map_marker_slash,
+          title: "Allow Access Location",
+          message: handlePermission.error.toString(),
+          onPressed: () {
+            final prayerC = Get.find<PrayerTimeControllerImpl>();
+            prayerC.openAppSetting().then((value) {
+              if (!value) {
+                Get.snackbar("Opps", "Cannot open setting");
+              }
+            });
+          },
+        ),
+      );
     } else {
       final location = await Geolocator.getCurrentPosition();
       var loc = _CurrentLocation(
@@ -101,6 +123,10 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
       currentLocation(loc);
       getPrayerTimesToday(location.latitude, location.longitude);
       getAddressLocationDetail(location.latitude, location.longitude);
+
+      // disabled load location state
+      isLoadLocation.value = false;
+
       getQiblah(location.latitude, location.longitude);
     }
   }
@@ -139,7 +165,9 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
       lastThirdOfTheNight: sunnahTimes.lastThirdOfTheNight,
     );
 
-    currentPrayer(nextPrayer.value);
+    currentPrayer(prayerTimes.currentPrayer());
+    log("Current prayer: ${prayerTimes.currentPrayer()}");
+
     nextPrayer(prayerTimes.nextPrayer());
     log("Next prayer: ${prayerTimes.nextPrayer()}");
 
@@ -188,42 +216,17 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
 
   Future<void> checkDeviceSensorSupport() async {
     FlutterQiblah.androidDeviceSensorSupport().then((value) {
-      if (value != null) {
+      if (value != null && value) {
         sensorIsSupported.value = value;
-        log("Check $value");
       }
       log("Check $value");
     });
   }
 
-  void getPrayerTimeCustom() {
-    // Custom Timezone Usage. (Most of you won't need this).
-    // print('NewYork Prayer Times');
-    // final newYork = Coordinates(35.7750, -78.6336);
-    // final nyUtcOffset = Duration(hours: -4);
-    // final nyDate = DateComponents(2015, 7, 12);
-    // final nyParams = CalculationMethod.north_america.getParameters();
-    // nyParams.madhab = Madhab.hanafi;
-    // final nyPrayerTimes =
-    //     PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
-
-    // print(nyPrayerTimes.fajr.timeZoneName);
-    // print(nyPrayerTimes.fajr);
-    // print(nyPrayerTimes.sunrise);
-    // print(nyPrayerTimes.dhuhr);
-    // print(nyPrayerTimes.asr);
-    // print(nyPrayerTimes.maghrib);
-    // print(nyPrayerTimes.isha);
-  }
-
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    getLocation();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
+    await getLocation();
+    // await Future.delayed(1.seconds);
   }
 }
