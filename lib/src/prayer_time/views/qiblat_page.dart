@@ -3,8 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_drawer.dart';
@@ -144,7 +143,10 @@ class QiblatPage extends StatelessWidget {
                                                   0.5,
                                                 ],
                                                 colors: [
-                                                  Colors.black.withOpacity(.5),
+                                                  Get.isDarkMode
+                                                      ? Colors.white
+                                                      : Colors.black
+                                                          .withOpacity(.5),
                                                   Colors.white.withOpacity(0.0),
                                                 ],
                                               ),

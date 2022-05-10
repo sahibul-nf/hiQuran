@@ -23,24 +23,27 @@ class PrayerTimePageShimmer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppShimmer(
-                      color:
-                          Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                      color: Get.isDarkMode
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.grey.shade100,
                       height: 20,
                       width: MediaQuery.of(context).size.width / 4,
                       radius: 50,
                     ),
                     const SizedBox(height: 10),
                     AppShimmer(
-                      color:
-                          Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                      color: Get.isDarkMode
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.grey.shade100,
                       height: 20,
                       width: MediaQuery.of(context).size.width / 2.5,
                       radius: 50,
                     ),
                     const SizedBox(height: 20),
                     AppShimmer(
-                      color:
-                          Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                      color: Get.isDarkMode
+                          ? Theme.of(context).primaryColor.withOpacity(0.1)
+                          : Colors.grey.shade100,
                       height: 20,
                       width: MediaQuery.of(context).size.width / 2,
                       radius: 50,
@@ -50,7 +53,9 @@ class PrayerTimePageShimmer extends StatelessWidget {
               ),
               const SizedBox(width: 20),
               AppShimmer(
-                color: Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                color: Get.isDarkMode
+                    ? Theme.of(context).primaryColor.withOpacity(0.1)
+                    : Colors.grey.shade100,
                 height: MediaQuery.of(context).size.width * 0.18,
                 width: MediaQuery.of(context).size.width * 0.18,
                 radius: 50,
@@ -75,7 +80,9 @@ class PrayerTimePageShimmer extends StatelessWidget {
                         children: [
                           AppShimmer(
                             color: Get.isDarkMode
-                                ? Colors.grey
+                                ? Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.1)
                                 : Colors.grey.shade100,
                             height: 30,
                             width: MediaQuery.of(context).size.width / 5,
@@ -84,7 +91,9 @@ class PrayerTimePageShimmer extends StatelessWidget {
                           const SizedBox(width: 10),
                           AppShimmer(
                             color: Get.isDarkMode
-                                ? Colors.grey
+                                ? Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.1)
                                 : Colors.grey.shade100,
                             height: 30,
                             width: MediaQuery.of(context).size.width / 7,
@@ -94,7 +103,9 @@ class PrayerTimePageShimmer extends StatelessWidget {
                           Flexible(
                             child: AppShimmer(
                               color: Get.isDarkMode
-                                  ? Colors.grey
+                                  ? Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1)
                                   : Colors.grey.shade100,
                               height: 30,
                               width: MediaQuery.of(context).size.width / 3,

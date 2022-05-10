@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
@@ -61,7 +62,7 @@ class SelectTime extends StatelessWidget {
               ),
               unselectedColor: Colors.grey.withOpacity(0.15),
               unselectedTextStyle: AppTextStyle.normal.copyWith(
-                color: Colors.grey.shade600,
+                color: Get.isDarkMode ? Colors.grey : Colors.grey.shade600,
               ),
             ),
           ),

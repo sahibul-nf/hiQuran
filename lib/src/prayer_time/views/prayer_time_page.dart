@@ -50,26 +50,26 @@ class PrayerTimePage extends StatelessWidget {
         centerTitle: true,
         elevation: 1,
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(milliseconds: 1500));
-          toNextPrayer();
-        },
-        backgroundColor: Theme.of(context).cardColor,
-        color: Theme.of(context).primaryColor,
-        strokeWidth: 3,
-        triggerMode: RefreshIndicatorTriggerMode.onEdge,
-        child: ConnectivityWidgetWrapper(
-          decoration: BoxDecoration(
-            boxShadow: [AppShadow.card],
-            color: ColorPalletes.frenchPink.withOpacity(0.2),
-          ),
-          messageStyle: AppTextStyle.small.copyWith(
-            color: ColorPalletes.frenchPink,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-          alignment: Alignment.topCenter,
+      body: ConnectivityWidgetWrapper(
+        decoration: BoxDecoration(
+          boxShadow: [AppShadow.card],
+          color: ColorPalletes.frenchPink.withOpacity(0.2),
+        ),
+        messageStyle: AppTextStyle.small.copyWith(
+          color: ColorPalletes.frenchPink,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+        alignment: Alignment.topCenter,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(const Duration(milliseconds: 1500));
+            toNextPrayer();
+          },
+          backgroundColor: Theme.of(context).cardColor,
+          color: Theme.of(context).primaryColor,
+          strokeWidth: 3,
+          triggerMode: RefreshIndicatorTriggerMode.onEdge,
           child: Obx(() {
             return prayerTimeC.isLoadLocation.value
                 ? const SingleChildScrollView(
@@ -279,7 +279,7 @@ class PrayerTimePage extends StatelessWidget {
                                 fillColor: Theme.of(context).primaryColor,
                                 backgroundColor: Theme.of(context)
                                     .primaryColor
-                                    .withOpacity(0.3),
+                                    .withOpacity(0.2),
                                 ringColor: Theme.of(context)
                                     .primaryColor
                                     .withOpacity(0.1),
@@ -369,8 +369,8 @@ class PrayerTimePage extends StatelessWidget {
                                                 horizontal: 8),
                                         backgroundColor: Get.isDarkMode
                                             ? Theme.of(context)
-                                                .primaryColor
-                                                .withOpacity(0.3)
+                                                .cardColor
+                                                .withOpacity(0.7)
                                             : Theme.of(context)
                                                 .primaryColor
                                                 .withOpacity(0.1),

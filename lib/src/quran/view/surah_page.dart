@@ -50,26 +50,26 @@ class SurahPage extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(milliseconds: 1500));
-          controller.fetchListOfSurah();
-        },
-        backgroundColor: Theme.of(context).cardColor,
-        color: Theme.of(context).primaryColor,
-        strokeWidth: 3,
-        triggerMode: RefreshIndicatorTriggerMode.onEdge,
-        child: ConnectivityWidgetWrapper(
-          decoration: BoxDecoration(
-            boxShadow: [AppShadow.card],
-            color: ColorPalletes.frenchPink.withOpacity(0.2),
-          ),
-          messageStyle: AppTextStyle.small.copyWith(
-            color: ColorPalletes.frenchPink,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-          alignment: Alignment.topCenter,
+      body: ConnectivityWidgetWrapper(
+        decoration: BoxDecoration(
+          boxShadow: [AppShadow.card],
+          color: ColorPalletes.frenchPink.withOpacity(0.2),
+        ),
+        messageStyle: AppTextStyle.small.copyWith(
+          color: ColorPalletes.frenchPink,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+        alignment: Alignment.topCenter,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(const Duration(milliseconds: 1500));
+            controller.fetchListOfSurah();
+          },
+          backgroundColor: Theme.of(context).cardColor,
+          color: Theme.of(context).primaryColor,
+          strokeWidth: 3,
+          triggerMode: RefreshIndicatorTriggerMode.onEdge,
           child: Obx(() {
             return controller.isLoading.value
                 ? ListView(

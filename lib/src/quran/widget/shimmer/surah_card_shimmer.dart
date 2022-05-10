@@ -18,7 +18,9 @@ class SurahCardShimmer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppShimmer(
-                  color: Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                  color: Get.isDarkMode
+                      ? Theme.of(context).primaryColor.withOpacity(0.1)
+                      : Colors.grey.shade100,
                   height: 45,
                   width: 45,
                   radius: 50,
@@ -29,16 +31,18 @@ class SurahCardShimmer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppShimmer(
-                        color:
-                            Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                        color: Get.isDarkMode
+                            ? Theme.of(context).primaryColor.withOpacity(0.1)
+                            : Colors.grey.shade100,
                         height: 20,
                         width: MediaQuery.of(context).size.width,
                         radius: 50,
                       ),
                       const SizedBox(height: 10),
                       AppShimmer(
-                        color:
-                            Get.isDarkMode ? Colors.grey : Colors.grey.shade100,
+                        color: Get.isDarkMode
+                            ? Theme.of(context).primaryColor.withOpacity(0.1)
+                            : Colors.grey.shade100,
                         height: 20,
                         width: MediaQuery.of(context).size.width / 3,
                         radius: 50,
