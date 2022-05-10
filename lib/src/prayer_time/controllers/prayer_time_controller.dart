@@ -7,7 +7,6 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:quran_app/src/prayer_time/formatters/result_formatter.dart';
 import 'package:quran_app/src/prayer_time/models/prayer_time.dart';
 import 'package:quran_app/src/widgets/app_permission_status.dart';

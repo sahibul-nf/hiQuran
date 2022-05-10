@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:group_button/group_button.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
-import 'package:quran_app/src/widgets/app_card.dart';
 
 import '../../../bricks/my_widgets/my_button.dart';
-import '../../../bricks/my_widgets/my_outline_button.dart';
 
 class SelectTime extends StatelessWidget {
   final Function()? onPressed;

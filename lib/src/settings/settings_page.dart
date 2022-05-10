@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quran_app/bricks/my_widgets/my_button.dart';
-import 'package:quran_app/services/notification_service.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_notif_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/settings/theme/theme_page.dart';
@@ -25,7 +23,6 @@ class SettingsPage extends StatelessWidget {
         elevation: 1,
       ),
       body: ListView(
-        
         children: [
           const SizedBox(height: 20),
           InkWell(
@@ -60,25 +57,6 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: MyButton(
-              text: "Show Notif",
-              onPressed: () {
-                // notifC.showNotification();
-
-                notifC.createPrayerTimeNotif("Test");
-                // AwesomeNotify.createBasicNotif(
-                //   "Prayer Times",
-                //   "Waktu shalat telah tiba!",
-                // ).then((value) {
-                  // if (!value) {
-                  //   Get.snackbar("Opps", "Notification unallowed");
-                  // }
-                // });
-              },
-            ),
-          )
         ],
       ),
     );

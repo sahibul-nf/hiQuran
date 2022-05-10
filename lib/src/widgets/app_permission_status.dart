@@ -1,11 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/my_outline_button.dart';
-import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
-import 'package:unicons/unicons.dart';
 
 import '../../bricks/my_widgets/my_button.dart';
 import '../settings/theme/app_theme.dart';

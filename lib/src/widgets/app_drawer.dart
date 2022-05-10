@@ -10,7 +10,6 @@ import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
-import 'package:quran_app/src/widgets/coming_soon_card.dart';
 import 'package:unicons/unicons.dart';
 
 import '../prayer_time/views/qiblat_page.dart';
@@ -179,8 +178,6 @@ class AppDrawer extends StatelessWidget {
                 },
                 onTap: () {
                   Get.back();
-                  // Get.bottomSheet(ComingSoonCard());
-                  // TODO: set this route future
 
                   Get.to(QiblatPage());
                 },

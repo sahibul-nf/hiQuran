@@ -6,7 +6,6 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:group_button/group_button.dart';
 import 'package:quran_app/services/notification_service.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_notif_controller.dart';

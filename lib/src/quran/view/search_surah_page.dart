@@ -97,7 +97,7 @@ class SearchQuranPage extends StatelessWidget {
             Obx(
               () => (controller.listOfSerchedSurah.isNotEmpty)
                   ? const SizedBox(height: 20)
-                  : const SizedBox(height: 50),
+                  : const SizedBox(height: 40),
             ),
             Obx(
               () => controller.listOfSerchedSurah.isNotEmpty

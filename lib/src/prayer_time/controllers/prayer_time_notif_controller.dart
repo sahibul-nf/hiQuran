@@ -4,7 +4,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../services/notification_service.dart';
@@ -172,11 +171,11 @@ class PrayerTimeNotifController extends GetxController {
       }
     });
 
-    AwesomeNotifications().createdStream.listen((notification) {
-      Get.snackbar("Wooho", 'Notifications enabled.');
+    // AwesomeNotifications().createdStream.listen((notification) {
+    //   Get.snackbar("Wooho", 'Notifications enabled.');
       // on ${notification.channelKey}');
       // AwesomeNotifications().s;
-    });
+    // });
 
     AwesomeNotifications().actionStream.listen((notification) {
       if ((notification.channelKey == 'basic_channel' ||
