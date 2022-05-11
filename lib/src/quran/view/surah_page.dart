@@ -152,34 +152,52 @@ class SurahPage extends StatelessWidget {
                               highlightColor: Colors.white12,
                               splashColor: Colors.white12,
                               onTap: () {
-                                controller
-                                    .setRecenlySurah(controller.listOfSurah[i]);
+                                controller.setRecenlySurah(
+                                    controller.listOfSurah.toList()[i]);
                                 Get.to(
                                   SurahDetailPage(
-                                    number: controller.listOfSurah[i].number,
-                                    nameShort:
-                                        controller.listOfSurah[i].name!.arab,
-                                    revelation: controller
-                                        .listOfSurah[i].revelation!.id,
-                                    nameTransliteration:
-                                        controller.listOfSurah[i].name!.id,
-                                    nameTranslation: controller
-                                        .listOfSurah[i].name!.translationId,
-                                    numberOfVerses: controller
-                                        .listOfSurah[i].numberOfVerses,
+                                    number: controller.listOfSurah
+                                        .toList()[i]
+                                        .number,
+                                    nameShort: controller.listOfSurah
+                                        .toList()[i]
+                                        .name!
+                                        .arab,
+                                    revelation: controller.listOfSurah
+                                        .toList()[i]
+                                        .revelation!
+                                        .id,
+                                    nameTransliteration: controller.listOfSurah
+                                        .toList()[i]
+                                        .name!
+                                        .id,
+                                    nameTranslation: controller.listOfSurah
+                                        .toList()[i]
+                                        .name!
+                                        .translationId,
+                                    numberOfVerses: controller.listOfSurah
+                                        .toList()[i]
+                                        .numberOfVerses,
                                   ),
                                   routeName: 'surah-detail',
                                 );
                               },
                               child: SurahItem(
-                                number: controller.listOfSurah[i].number,
-                                nameShort: controller.listOfSurah[i].name!.arab,
-                                revelation:
-                                    controller.listOfSurah[i].revelation!.id,
+                                number:
+                                    controller.listOfSurah.toList()[i].number,
+                                nameShort: controller.listOfSurah
+                                    .toList()[i]
+                                    .name!
+                                    .arab,
+                                revelation: controller.listOfSurah
+                                    .toList()[i]
+                                    .revelation!
+                                    .id,
                                 nameTransliteration:
-                                    controller.listOfSurah[i].name!.id,
-                                numberOfVerses:
-                                    controller.listOfSurah[i].numberOfVerses,
+                                    controller.listOfSurah.toList()[i].name!.id,
+                                numberOfVerses: controller.listOfSurah
+                                    .toList()[i]
+                                    .numberOfVerses,
                               ),
                             ),
                           ),

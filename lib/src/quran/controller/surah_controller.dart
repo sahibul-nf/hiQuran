@@ -8,8 +8,8 @@ import 'package:quran_app/src/quran/model/verse.dart';
 import 'package:string_similarity/string_similarity.dart';
 
 class SurahController extends GetxController {
-  final _listOfSurah = <Surah>[].obs;
-  List<Surah> get listOfSurah => _listOfSurah();
+  final _listOfSurah = <Surah>{}.obs;
+  Set<Surah> get listOfSurah => _listOfSurah();
 
   final _listOfSearchedSurah = <Surah>{}.obs;
   Set<Surah> get listOfSerchedSurah => _listOfSearchedSurah().obs;
@@ -18,6 +18,8 @@ class SurahController extends GetxController {
   }
 
   searchSurah(String query) {
+    // _listOfSearchedSurah.clear();
+
     if (query.isEmpty) {
       _listOfSearchedSurah.clear();
     } else {
@@ -53,6 +55,9 @@ class SurahController extends GetxController {
   }
 
   Future fetchListOfSurah() async {
+    // clear list of surah
+    _listOfSurah.clear();
+
     try {
       final url = Uri.parse("https://api.quran.sutanlab.id/surah");
       isLoading.value = true;
