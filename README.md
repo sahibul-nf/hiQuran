@@ -30,7 +30,10 @@ Semoga Allah mudahkan dan ridhai. Dan semoga saya, teman-teman yang resourcenya 
 - [x]   Prayer Times
 - [x]   Dark Mode
 - [x]   Beautiful UI Theme
-- [ ]   Qiblah Direction
+- [x]   Qiblah Direction
+- [ ]   Favorite Surah
+- [ ]   Verse Social Sharing
+- [ ]   Save latest Verse / Bookmark
 - [ ]   Hadist
 
 
