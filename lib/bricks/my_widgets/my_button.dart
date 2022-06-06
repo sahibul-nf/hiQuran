@@ -10,6 +10,8 @@ class MyButton extends StatelessWidget {
   final double? width;
   final double? height;
   final bool isLoading;
+  final Color? color;
+  final Color? onPrimaryColor;
   MyButton({
     required this.text,
     required this.onPressed,
@@ -17,6 +19,8 @@ class MyButton extends StatelessWidget {
     Key? key,
     this.width,
     this.height = 54,
+    this.color,
+    this.onPrimaryColor,
   }) : super(key: key);
 
   final settingController = Get.put(SettingsController());
@@ -34,8 +38,8 @@ class MyButton extends StatelessWidget {
           elevation: 0,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 15),
-          primary: primaryColor,
-          onPrimary: Theme.of(context).backgroundColor,
+          primary: color ?? primaryColor,
+          onPrimary: onPrimaryColor ?? Theme.of(context).backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
@@ -46,19 +50,23 @@ class MyButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DottedCircularProgressIndicatorFb(
-                    currentDotColor:
-                        Theme.of(context).cardColor.withOpacity(0.3),
-                    defaultDotColor: Theme.of(context).cardColor,
+                    currentDotColor: (text == "Delete")
+                        ? Colors.white70
+                        : Theme.of(context).cardColor.withOpacity(0.3),
+                    defaultDotColor: (text == "Delete")
+                        ? Colors.white
+                        : Theme.of(context).cardColor,
                     numDots: 7,
                     dotSize: 3,
                   ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "Loading...",
-                    style: AppTextStyle.normal.copyWith(
-                      color: Theme.of(context).cardColor,
+                  if (text != "Delete") const SizedBox(width: 5),
+                  if (text != "Delete")
+                    Text(
+                      "Loading...",
+                      style: AppTextStyle.normal.copyWith(
+                        color: Theme.of(context).cardColor,
+                      ),
                     ),
-                  ),
                 ],
               )
             : Text(

@@ -12,6 +12,7 @@ import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/models/user.dart';
 import 'package:quran_app/src/profile/views/signin_page.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
+import 'package:quran_app/src/settings/settings_page.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/widgets/coming_soon_card.dart';
@@ -203,6 +204,14 @@ class ProfilePage extends StatelessWidget {
                         title: "Give Feedback",
                         onPressed: () {
                           Wiredash.of(context)?.show();
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      ProfileItem(
+                        icon: UniconsLine.setting,
+                        title: "Settings",
+                        onPressed: () {
+                          Get.to(() => const SettingsPage());
                         },
                       ),
                       const SizedBox(height: 40),

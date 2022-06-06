@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
+import 'package:quran_app/src/quran/repository/surah_favorite_repository.dart';
 import 'package:string_similarity/string_similarity.dart';
 
 class SurahController extends GetxController {
@@ -72,7 +73,7 @@ class SurahController extends GetxController {
           if (_listOfSurah.isNotEmpty) {
             isLoading.value = false;
           }
-          if (_listOfSurah.length < 9) {
+          if (_listOfSurah.length < 3) {
             await Future.delayed(const Duration(milliseconds: 500));
           }
         }
@@ -115,6 +116,99 @@ class SurahController extends GetxController {
       // isLoading.value = false;
       return false;
     }
+  }
+
+  // FAVORITE
+  final _surahFavorites = <Surah>{}.obs;
+  Set<Surah> get surahFavorites => _surahFavorites();
+
+  var isFavoriteLoaded = false.obs;
+  var isFavoriteDeleted = false.obs;
+
+  bool isFavorite(Surah surah) {
+    return _surahFavorites.contains(surah);
+  }
+
+  void addToFavorite(int userID, Surah surah) async {
+    final surahRepo = SurahFavoriteRepositoryImpl();
+
+    final value = await surahRepo.addSurahFavorite(userID, surah.number!);
+    if (value.error != null) {
+      Get.snackbar("Opps", value.error.toString());
+    } else {
+      if (value.surahFavorites!.isNotEmpty) {
+        _surahFavorites.add(surah);
+        printInfo(info: "add to favorite");
+      }
+    }
+  }
+
+  Future<void> removeFromFavorite(int userID, Surah surah) async {
+    final surahRepo = SurahFavoriteRepositoryImpl();
+
+    isFavoriteDeleted.value = true;
+
+    final value = await surahRepo.removeSurahFavorite(userID, surah.number!);
+    if (value.error != null) {
+      Get.snackbar("Opps", value.error.toString());
+    } else {
+      if (value.surahFavorites!.isNotEmpty) {
+        _surahFavorites.remove(surah);
+        printInfo(info: "remove from favorite");
+      }
+    }
+
+    isFavoriteDeleted.value = false;
+  }
+
+  void removeAllFromFavorite(int userID) async {
+    final surahRepo = SurahFavoriteRepositoryImpl();
+
+    isFavoriteDeleted.value = true;
+
+    final value = await surahRepo.removeAllSurahFavorite(userID);
+    if (value.error != null) {
+      Get.snackbar("Opps", value.error.toString());
+    } else {
+      if (value.surahFavorites!.isNotEmpty) {
+        _surahFavorites.clear();
+        printInfo(info: "remove all from favorite");
+      }
+      Get.back();
+    }
+
+    isFavoriteDeleted.value = false;
+  }
+
+  Future<void> fetchSurahFavorites(int userID) async {
+    _surahFavorites.clear();
+
+    final surahFavoriteRepo = SurahFavoriteRepositoryImpl();
+
+    log(surahFavorites.length.toString());
+    isFavoriteLoaded.value = true;
+
+    final result = await surahFavoriteRepo.getListOfFavoriteSurah(userID);
+    if (result.error != null) {
+      Get.snackbar("Opps...", result.error.toString());
+    } else {
+      if (result.surahFavorites!.isNotEmpty) {
+        var i = 0;
+        do {
+          for (var item in _listOfSurah) {
+            if (item.number == result.surahFavorites![i].surahId) {
+              _surahFavorites.add(item);
+            }
+          }
+
+          i++;
+        } while (i < result.surahFavorites!.length);
+      }
+
+      log(surahFavorites.length.toString());
+    }
+
+    isFavoriteLoaded.value = false;
   }
 
   @override

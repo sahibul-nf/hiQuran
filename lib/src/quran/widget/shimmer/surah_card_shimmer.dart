@@ -4,14 +4,15 @@ import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:quran_app/src/widgets/app_shimmer.dart';
 
 class SurahCardShimmer extends StatelessWidget {
-  const SurahCardShimmer({Key? key}) : super(key: key);
+  const SurahCardShimmer({Key? key, this.amount = 7}) : super(key: key);
+  final int amount;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 10),
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < amount; i++)
           AppCard(
             vMargin: 10,
             child: Row(

@@ -10,7 +10,7 @@ class AppCard extends StatelessWidget {
     this.hMargin = 20,
     this.radius = 25,
     this.color,
-    this.vMargin = 0,
+    this.vMargin = 0, this.width,
   }) : super(key: key);
   final Widget child;
   final double vPadding;
@@ -19,13 +19,14 @@ class AppCard extends StatelessWidget {
   final double vMargin;
   final double radius;
   final Color? color;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Container(
-      width: size.width,
+      width: width ?? size.width,
       padding: EdgeInsets.symmetric(vertical: vPadding, horizontal: hPadding),
       margin: EdgeInsets.symmetric(horizontal: hMargin, vertical: vMargin),
       decoration: BoxDecoration(

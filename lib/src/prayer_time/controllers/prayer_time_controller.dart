@@ -205,6 +205,8 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
     }
   }
 
+  var isQiblahLoaded = false.obs;
+
   void getQiblah(double latitude, double longitude) {
     final myCoordinates = Coordinates(latitude, longitude);
 
@@ -217,6 +219,7 @@ class PrayerTimeControllerImpl extends PrayerTimeController {
     FlutterQiblah.androidDeviceSensorSupport().then((value) {
       if (value != null && value) {
         sensorIsSupported.value = value;
+        isQiblahLoaded.value = true;
       }
       log("Check $value");
     });

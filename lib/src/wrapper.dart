@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:quran_app/src/app.dart';
 import 'package:quran_app/src/profile/controllers/auth_controller.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
-import 'package:quran_app/src/quran/view/surah_page.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
@@ -32,7 +32,8 @@ class Wrapper extends StatelessWidget {
     final session = box.read('user');
     log("Session : $session");
     if (session == null || session == "") {
-      Get.off(() => SurahPage());
+      // Get.off(() => SurahPage());
+      Get.off(() => const MainPage());
     } else {
       final res = await _authController.recoverSession(session);
       await box.write('user', res?.persistSessionString);
@@ -43,7 +44,9 @@ class Wrapper extends StatelessWidget {
         // if (value.user == null && value.error == "Email not registered") {
         //   Get.off(SignUpPage());
         // } else {
-        Get.off(SurahPage());
+        // Get.off(SurahPage());
+        Get.off(() => const MainPage());
+
         // }
       });
     }

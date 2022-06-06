@@ -116,31 +116,8 @@ class SearchQuranPage extends StatelessWidget {
                                     controller.listOfSerchedSurah.toList()[i]);
                                 Get.to(
                                   SurahDetailPage(
-                                    number: controller.listOfSerchedSurah
-                                        .toList()[i]
-                                        .number,
-                                    nameShort: controller.listOfSerchedSurah
-                                        .toList()[i]
-                                        .name!
-                                        .arab,
-                                    revelation: controller.listOfSerchedSurah
-                                        .toList()[i]
-                                        .revelation!
-                                        .id,
-                                    nameTransliteration: controller
-                                        .listOfSerchedSurah
-                                        .toList()[i]
-                                        .name!
-                                        .id,
-                                    nameTranslation: controller
-                                        .listOfSerchedSurah
-                                        .toList()[i]
-                                        .name!
-                                        .translationId,
-                                    numberOfVerses: controller
-                                        .listOfSerchedSurah
-                                        .toList()[i]
-                                        .numberOfVerses,
+                                    surah: controller.listOfSerchedSurah
+                                        .toList()[i],
                                   ),
                                   routeName:
                                       '/surah/${controller.listOfSerchedSurah.toList()[i].name!.id?.toLowerCase()}',

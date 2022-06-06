@@ -1,19 +1,20 @@
 import 'dart:developer';
 import 'dart:io' as ui;
+
 // import 'package:universal_io/io.dart' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:get/get.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:quran_app/bricks/my_widgets/input_text.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/bricks/my_widgets/my_circle_avatar.dart';
-import 'package:quran_app/bricks/my_widgets/input_text.dart';
+import 'package:quran_app/src/app.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 import '../../../helper/global_state.dart';
-import '../../quran/view/surah_page.dart';
 
 class ConfirmAccountPage extends StatelessWidget {
   ConfirmAccountPage({Key? key}) : super(key: key);
@@ -202,7 +203,9 @@ class ConfirmAccountPage extends StatelessWidget {
 
       _state.isLoading.value = false;
       Get.snackbar("Woo hoo..", "Your successfully to create account");
-      Get.offAll(SurahPage());
+      // Get.offAll(SurahPage());
+      Get.offAll(const MainPage());
+
       userController.fileImage.value = ui.File("");
       userController.copiedText.value = "";
       userController.username.value = "";

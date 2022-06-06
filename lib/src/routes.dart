@@ -1,4 +1,5 @@
 import 'package:get/route_manager.dart';
+import 'package:quran_app/src/settings/settings_page.dart';
 
 import 'home/view/home_page.dart';
 import 'prayer_time/views/prayer_time_page.dart';
@@ -14,6 +15,7 @@ abstract class Routes {
     GetPage(name: "/surah", page: () => SurahPage()),
     GetPage(name: "/prayer-times", page: () => PrayerTimePage()),
     GetPage(name: "/qiblat", page: () => QiblatPage()),
+    GetPage(name: "/setting", page: () => SettingsPage()),
     GetPage(
       name: SearchQuranPage.routeName,
       page: () => SearchQuranPage(),

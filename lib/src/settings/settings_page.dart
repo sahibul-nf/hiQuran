@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quran_app/src/prayer_time/controllers/prayer_time_notif_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/settings/theme/theme_page.dart';
 import 'package:quran_app/src/widgets/app_card.dart';
 import 'package:unicons/unicons.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({Key? key}) : super(key: key);
-
-  final notifC = Get.put(PrayerTimeNotifController());
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

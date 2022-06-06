@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/google_button_1.dart';
-import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/bricks/my_widgets/input_text.dart';
+import 'package:quran_app/bricks/my_widgets/my_button.dart';
+import 'package:quran_app/src/app.dart';
 import 'package:quran_app/src/profile/controllers/auth_controller.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/formatter/response_formatter.dart';
@@ -12,7 +13,6 @@ import 'package:quran_app/src/settings/controller/settings_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 
 import '../../../helper/global_state.dart';
-import '../../quran/view/surah_page.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -179,7 +179,7 @@ class SignInPage extends StatelessWidget {
         } else {
           userController.loadUser(result.user?.email).then((value) {
             _state.isLoading(false);
-            Get.offAll(SurahPage());
+            Get.offAll(const MainPage());
           });
         }
       });
@@ -207,7 +207,7 @@ class SignInPage extends StatelessWidget {
             Get.snackbar("Opps...", result.error.toString());
           } else {
             userController.loadUser(result.user?.email).then((value) {
-              Get.offAll(SurahPage());
+              Get.offAll(const MainPage());
             });
           }
         });
