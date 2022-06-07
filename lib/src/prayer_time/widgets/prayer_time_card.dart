@@ -24,6 +24,7 @@ class PrayerTimeCard extends StatelessWidget {
         int? nextH, nextM;
         var leftOver = 0;
         var duration = 0;
+        int initDuration = 0;
 
         switch (prayer) {
           case Prayer.fajr:
@@ -96,11 +97,11 @@ class PrayerTimeCard extends StatelessWidget {
         // convert negative value to positive
         if (duration.isNegative) duration = duration * -1;
 
-        int initDuration = 0;
-
+        /* This comment code is for testing purpose
         if (initDuration < duration) {
           initDuration = duration - (leftOver - 7920);
         }
+        */
 
         if (initDuration > duration) initDuration = duration;
 
