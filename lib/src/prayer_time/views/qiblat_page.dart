@@ -121,11 +121,13 @@ class QiblatPage extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: Column(
                                         children: [
-                                          Image.asset(
-                                            "assets/illustration/3D-Kaaba.png",
-                                            width: 60,
-                                            cacheHeight: 200,
-                                            cacheWidth: 200,
+                                          FadeIn(
+                                            child: Image.asset(
+                                              "assets/illustration/3D-Kaaba.png",
+                                              width: 60,
+                                              cacheHeight: 200,
+                                              cacheWidth: 200,
+                                            ),
                                           ),
                                           Container(
                                             height: 300,

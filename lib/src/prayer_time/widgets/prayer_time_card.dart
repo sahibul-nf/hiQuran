@@ -91,9 +91,14 @@ class PrayerTimeCard extends StatelessWidget {
 
       // convert negative value to positive
       if (duration.isNegative) duration = duration * -1;
-      log("Duration: $duration $prayer");
+      int initDuration = duration - (leftOver - 0);
+      // 1680
+      // int initDuration = -1;
+      // if (initDuration > duration) initDuration = duration;
 
+      log("Duration: $duration $prayer");
       log("LeftOver Value: ${prayerTimeC.leftOver.value}");
+      log("InitDuration: $initDuration");
 
       String hour = nextH != null ? nextH.toString().padLeft(2, '0') : "--";
       String minute = nextM != null ? nextM.toString().padLeft(2, '0') : "--";
@@ -169,8 +174,8 @@ class PrayerTimeCard extends StatelessWidget {
             CircularCountDownTimer(
               width: MediaQuery.of(context).size.width * 0.18,
               height: MediaQuery.of(context).size.width * 0.18,
-              duration: duration,
-              initialDuration: duration - leftOver,
+              duration: (duration == 0) ? 0 : duration,
+              initialDuration: initDuration,
               controller: prayerTimeC.cT,
               fillColor: Theme.of(context).primaryColor,
               backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),

@@ -129,21 +129,23 @@ class SurahController extends GetxController {
     return _surahFavorites.contains(surah);
   }
 
-  void addToFavorite(int userID, Surah surah) async {
+  Future<bool> addToFavorite(int userID, Surah surah) async {
     final surahRepo = SurahFavoriteRepositoryImpl();
 
     final value = await surahRepo.addSurahFavorite(userID, surah.number!);
     if (value.error != null) {
       Get.snackbar("Opps", value.error.toString());
+      return false;
     } else {
       if (value.surahFavorites!.isNotEmpty) {
         _surahFavorites.add(surah);
         printInfo(info: "add to favorite");
       }
+      return true;
     }
   }
 
-  Future<void> removeFromFavorite(int userID, Surah surah) async {
+  Future<bool> removeFromFavorite(int userID, Surah surah) async {
     final surahRepo = SurahFavoriteRepositoryImpl();
 
     isFavoriteDeleted.value = true;
@@ -151,14 +153,16 @@ class SurahController extends GetxController {
     final value = await surahRepo.removeSurahFavorite(userID, surah.number!);
     if (value.error != null) {
       Get.snackbar("Opps", value.error.toString());
+      isFavoriteDeleted.value = false;
+      return false;
     } else {
       if (value.surahFavorites!.isNotEmpty) {
         _surahFavorites.remove(surah);
         printInfo(info: "remove from favorite");
       }
+      isFavoriteDeleted.value = false;
+      return true;
     }
-
-    isFavoriteDeleted.value = false;
   }
 
   void removeAllFromFavorite(int userID) async {

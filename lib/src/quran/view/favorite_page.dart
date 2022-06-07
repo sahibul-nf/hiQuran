@@ -62,36 +62,38 @@ class FavoritePage extends StatelessWidget {
       ),
       body: Obx(
         () => userC.user.email == null
-            ? Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      "assets/illustration/cannot-access-state.svg",
-                      width: 190,
-                    ),
-                    const SizedBox(height: 40),
-                    Text(
-                      "Opps ...",
-                      style: AppTextStyle.bigTitle,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "Let's login first, then you can enjoy \nand explore this feature.",
-                      style: AppTextStyle.normal.copyWith(
-                        color: Colors.grey,
+            ? FadeIn(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/illustration/cannot-access-state.svg",
+                        width: 190,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 40),
-                    MyButton(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      text: "Sign In",
-                      onPressed: () => Get.to(SignInPage()),
-                    ),
-                  ],
+                      const SizedBox(height: 40),
+                      Text(
+                        "Opps ...",
+                        style: AppTextStyle.bigTitle,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "Let's login first, then you can enjoy \nand explore this feature.",
+                        style: AppTextStyle.normal.copyWith(
+                          color: Colors.grey,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 40),
+                      MyButton(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        text: "Sign In",
+                        onPressed: () => Get.to(SignInPage()),
+                      ),
+                    ],
+                  ),
                 ),
               )
             : surahC.isFavoriteLoaded.value

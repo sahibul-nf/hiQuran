@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -31,270 +32,291 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () => Get.to(() => ProfilePage()),
-                          child: Obx(
-                            () => (userC.user.photoUrl != null)
-                                ? Hero(
-                                    tag: "avatar",
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: Image.network(
-                                        userC.user.photoUrl.toString(),
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                        loadingBuilder:
-                                            (ctx, child, loadingProgress) {
-                                          if (loadingProgress == null) {
-                                            return child;
-                                          }
-
-                                          return Center(
-                                            child: SizedBox(
-                                              height: 36,
-                                              child:
-                                                  DottedCircularProgressIndicatorFb(
-                                                currentDotColor:
-                                                    _settingsController
-                                                            .isDarkMode.value
-                                                        ? Theme.of(context)
-                                                            .backgroundColor
-                                                            .withOpacity(0.3)
-                                                        : Theme.of(context)
-                                                            .primaryColor
-                                                            .withOpacity(0.3),
-                                                defaultDotColor:
-                                                    _settingsController
-                                                            .isDarkMode.value
-                                                        ? Theme.of(context)
-                                                            .backgroundColor
-                                                        : Theme.of(context)
-                                                            .primaryColor,
-                                                numDots: 7,
-                                                dotSize: 3,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                : Hero(
-                                    tag: "avatarIcon",
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .primaryColor
-                                            .withOpacity(0.1),
-                                        // color: Colors.red,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(const Duration(milliseconds: 1500));
+            prayerTimeC.getLocation().then((_) {
+              prayerTimeC.cT.restart(duration: prayerTimeC.leftOver.value);
+            });
+          },
+          backgroundColor: Theme.of(context).cardColor,
+          color: Theme.of(context).primaryColor,
+          strokeWidth: 3,
+          triggerMode: RefreshIndicatorTriggerMode.onEdge,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () => Get.to(() => ProfilePage()),
+                            child: Obx(
+                              () => (userC.user.photoUrl != null)
+                                  ? Hero(
+                                      tag: "avatar",
+                                      child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(100),
+                                        child: Image.network(
+                                          userC.user.photoUrl.toString(),
+                                          width: 50,
+                                          height: 50,
+                                          fit: BoxFit.cover,
+                                          loadingBuilder:
+                                              (ctx, child, loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+
+                                            return Center(
+                                              child: SizedBox(
+                                                height: 36,
+                                                child:
+                                                    DottedCircularProgressIndicatorFb(
+                                                  currentDotColor:
+                                                      _settingsController
+                                                              .isDarkMode.value
+                                                          ? Theme.of(context)
+                                                              .backgroundColor
+                                                              .withOpacity(0.3)
+                                                          : Theme.of(context)
+                                                              .primaryColor
+                                                              .withOpacity(0.3),
+                                                  defaultDotColor:
+                                                      _settingsController
+                                                              .isDarkMode.value
+                                                          ? Theme.of(context)
+                                                              .backgroundColor
+                                                          : Theme.of(context)
+                                                              .primaryColor,
+                                                  numDots: 7,
+                                                  dotSize: 3,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                       ),
-                                      height: 50,
-                                      width: 50,
-                                      child: Icon(
-                                        Icons.person,
-                                        // size: 30,
+                                    )
+                                  : Hero(
+                                      tag: "avatarIcon",
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.1),
+                                          // color: Colors.red,
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                        ),
+                                        height: 50,
+                                        width: 50,
+                                        child: Icon(
+                                          Icons.person,
+                                          // size: 30,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Assalamu'alaikum,",
+                                style: AppTextStyle.small.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Obx(
+                                () => Text(
+                                  userC.user.name ?? "Hamba Allah",
+                                  style: AppTextStyle.title,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: const Icon(
+                      //     Icons.notifications_none,
+                      //   ),
+                      // ),
+                      IconButton(
+                        onPressed: () {
+                          if (_settingsController.isDarkMode.value) {
+                            final box = Get.find<GetStorage>();
+                            var primaryColorName = box.read('primaryColor');
+
+                            if (primaryColorName != null) {
+                              _settingsController.setTheme(primaryColorName);
+                            } else {
+                              var listColor = _settingsController.listColor;
+                              var listColorName =
+                                  _settingsController.listColorName;
+                              var primaryColor =
+                                  _settingsController.primaryColor.value;
+
+                              for (var i = 0; i <= 4; i++) {
+                                if (listColor[i] == primaryColor) {
+                                  _settingsController
+                                      .setTheme(listColorName[i]);
+                                }
+                              }
+                            }
+                          } else {
+                            _settingsController.setDarkMode(true);
+                          }
+                        },
+                        icon: Icon(
+                          _settingsController.isDarkMode.value
+                              ? UniconsLine.moon
+                              : UniconsLine.sun,
+                          color:
+                              Theme.of(context).iconTheme.color ?? Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                FadeInRight(
+                  from: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Obx(
+                      () => prayerTimeC.isLoadLocation.value
+                          ? Shimmer.fromColors(
+                              child: Container(),
+                              baseColor: Colors.grey,
+                              highlightColor: Colors.grey.shade100,
+                            )
+                          : GestureDetector(
+                              onTap: () => Get.to(
+                                PrayerTimePage(),
+                              ),
+                              child: PrayerTimeCard(prayerTimeC: prayerTimeC),
+                            ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                FadeInLeft(
+                  from: 50,
+                  child: AppCard(
+                    vPadding: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        UniconsLine.book_open,
+                                        size: 16,
+                                        color: Colors.grey,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        "Last Read",
+                                        style: AppTextStyle.small.copyWith(
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Obx(
+                                    () => Text(
+                                      surahC.recenlySurah.name != null
+                                          ? "Quran"
+                                          : "Opps",
+                                      style: AppTextStyle.bigTitle.copyWith(
                                         color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                   ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Assalamu'alaikum,",
-                              style: AppTextStyle.small.copyWith(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Obx(
-                              () => Text(
-                                userC.user.name ?? "Hamba Allah",
-                                style: AppTextStyle.title,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    // IconButton(
-                    //   onPressed: () {},
-                    //   icon: const Icon(
-                    //     Icons.notifications_none,
-                    //   ),
-                    // ),
-                    IconButton(
-                      onPressed: () {
-                        if (_settingsController.isDarkMode.value) {
-                          final box = Get.find<GetStorage>();
-                          var primaryColorName = box.read('primaryColor');
-
-                          if (primaryColorName != null) {
-                            _settingsController.setTheme(primaryColorName);
-                          } else {
-                            var listColor = _settingsController.listColor;
-                            var listColorName =
-                                _settingsController.listColorName;
-                            var primaryColor =
-                                _settingsController.primaryColor.value;
-
-                            for (var i = 0; i <= 4; i++) {
-                              if (listColor[i] == primaryColor) {
-                                _settingsController.setTheme(listColorName[i]);
-                              }
-                            }
-                          }
-                        } else {
-                          _settingsController.setDarkMode(true);
-                        }
-                      },
-                      icon: Icon(
-                        _settingsController.isDarkMode.value
-                            ? UniconsLine.moon
-                            : UniconsLine.sun,
-                        color:
-                            Theme.of(context).iconTheme.color ?? Colors.white,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Obx(
-                  () => prayerTimeC.isLoadLocation.value
-                      ? Shimmer.fromColors(
-                          child: Container(),
-                          baseColor: Colors.grey,
-                          highlightColor: Colors.grey.shade100,
-                        )
-                      : GestureDetector(
-                          onTap: () => Get.to(
-                            PrayerTimePage(),
-                          ),
-                          child: PrayerTimeCard(prayerTimeC: prayerTimeC),
-                        ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              AppCard(
-                vPadding: 16,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(
-                                    UniconsLine.book_open,
-                                    size: 16,
-                                    color: Colors.grey,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    "Last Read",
-                                    style: AppTextStyle.small.copyWith(
-                                      color: Colors.grey,
-                                    ),
+                                  const SizedBox(height: 4),
+                                  Obx(
+                                    () => surahC.recenlySurah.name != null
+                                        ? Text(
+                                            "Surah " +
+                                                surahC.recenlySurah.name!.id
+                                                    .toString(),
+                                            style: AppTextStyle.normal,
+                                          )
+                                        : Text(
+                                            "You haven't read the quran lately.",
+                                            style: AppTextStyle.small,
+                                          ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 20),
-                              Obx(
+                            ),
+                            const SizedBox(child: Icon3DFb13(), width: 100),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (surahC.recenlySurah.name != null) {
+                              Get.to(
+                                SurahDetailPage(
+                                  surah: surahC.recenlySurah,
+                                ),
+                              );
+                            } else {
+                              Get.to(SurahPage());
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.only(top: 16),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [AppShadow.card],
+                            ),
+                            child: Center(
+                              child: Obx(
                                 () => Text(
                                   surahC.recenlySurah.name != null
-                                      ? "Quran"
-                                      : "Opps",
-                                  style: AppTextStyle.bigTitle.copyWith(
+                                      ? "Read again"
+                                      : "Read Quran",
+                                  style: AppTextStyle.normal.copyWith(
                                     color: Theme.of(context).primaryColor,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Obx(
-                                () => surahC.recenlySurah.name != null
-                                    ? Text(
-                                        "Surah " +
-                                            surahC.recenlySurah.name!.id
-                                                .toString(),
-                                        style: AppTextStyle.normal,
-                                      )
-                                    : Text(
-                                        "You haven't read the quran lately.",
-                                        style: AppTextStyle.small,
-                                      ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(child: Icon3DFb13(), width: 100),
                       ],
                     ),
-                    InkWell(
-                      onTap: () {
-                        if (surahC.recenlySurah.name != null) {
-                          Get.to(
-                            SurahDetailPage(
-                              surah: surahC.recenlySurah,
-                            ),
-                          );
-                        } else {
-                          Get.to(SurahPage());
-                        }
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        margin: const EdgeInsets.only(top: 16),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 10),
-                        decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [AppShadow.card],
-                        ),
-                        child: Center(
-                          child: Obx(
-                            () => Text(
-                              surahC.recenlySurah.name != null
-                                  ? "Read again"
-                                  : "Read Quran",
-                              style: AppTextStyle.normal.copyWith(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

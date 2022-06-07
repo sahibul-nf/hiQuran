@@ -65,6 +65,7 @@ dependencies:
   http: ^0.13.4
   image_picker: ^0.8.4+10
   images_picker: ^1.2.10
+  like_button: ^2.0.4
   model_viewer_plus: ^1.1.2
   r_dotted_line_border: ^0.1.1
   salomon_bottom_bar: ^3.3.1

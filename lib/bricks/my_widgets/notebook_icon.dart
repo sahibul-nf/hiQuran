@@ -5,9 +5,11 @@ class Icon3DFb13 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/3d%20icons%2Fnotebook-dynamic-color.png?alt=media&token=c644a0d1-4f53-42a8-a34a-b7853c256903",
+    return Image.asset(
+      "assets/illustration/notebook-dynamic-color.png",
       fit: BoxFit.cover,
+      cacheHeight: 200,
+      cacheWidth: 200,
     );
   }
 }
