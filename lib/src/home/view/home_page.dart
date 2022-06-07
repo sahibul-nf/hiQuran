@@ -8,6 +8,7 @@ import 'package:quran_app/src/home/controller/home_controller.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
 import 'package:quran_app/src/prayer_time/views/prayer_time_page.dart';
 import 'package:quran_app/src/prayer_time/widgets/prayer_time_card.dart';
+import 'package:quran_app/src/prayer_time/widgets/prayer_time_card_shimmer.dart';
 import 'package:quran_app/src/profile/controllers/user_controller.dart';
 import 'package:quran_app/src/profile/views/profile_page.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
@@ -198,16 +199,15 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Obx(
                       () => prayerTimeC.isLoadLocation.value
-                          ? Shimmer.fromColors(
-                              child: Container(),
-                              baseColor: Colors.grey,
-                              highlightColor: Colors.grey.shade100,
-                            )
+                          ? const PrayerTimeCardShimmer()
                           : GestureDetector(
                               onTap: () => Get.to(
                                 PrayerTimePage(),
                               ),
-                              child: PrayerTimeCard(prayerTimeC: prayerTimeC),
+                              child: Hero(
+                                tag: 'prayer_time_card',
+                                child: PrayerTimeCard(prayerTimeC: prayerTimeC),
+                              ),
                             ),
                     ),
                   ),

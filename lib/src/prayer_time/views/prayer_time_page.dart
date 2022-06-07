@@ -89,7 +89,10 @@ class PrayerTimePage extends StatelessWidget {
                         style: AppTextStyle.title,
                       ),
                       const SizedBox(height: 10),
-                      PrayerTimeCard(prayerTimeC: prayerTimeC),
+                      Hero(
+                        tag: 'prayer_time_card',
+                        child: PrayerTimeCard(prayerTimeC: prayerTimeC),
+                      ),
                       const SizedBox(height: 20),
                       Obx(() {
                         var time = prayerTimeC.prayerTimesToday.value;
@@ -131,16 +134,17 @@ class PrayerTimePage extends StatelessWidget {
                           "Qiyam",
                         ];
 
-                        return AppCard(
-                          hMargin: 0,
-                          child: SizedBox(
-                            height: 432,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, i) {
-                                return FadeInDown(
-                                  child: Row(
+                        return FadeInDown(
+                          from: 40,
+                          child: AppCard(
+                            hMargin: 0,
+                            child: SizedBox(
+                              height: 432,
+                              width: MediaQuery.of(context).size.width,
+                              child: ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, i) {
+                                  return Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
@@ -400,13 +404,13 @@ class PrayerTimePage extends StatelessWidget {
                                         ),
                                       )
                                     ],
-                                  ),
-                                );
-                              },
-                              separatorBuilder: (context, i) {
-                                return const Divider();
-                              },
-                              itemCount: prayerTimes.length,
+                                  );
+                                },
+                                separatorBuilder: (context, i) {
+                                  return const Divider();
+                                },
+                                itemCount: prayerTimes.length,
+                              ),
                             ),
                           ),
                         );
