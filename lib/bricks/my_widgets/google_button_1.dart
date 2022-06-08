@@ -1,4 +1,7 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 import 'package:quran_app/src/settings/controller/settings_controller.dart';
@@ -62,13 +65,12 @@ class GoogleBtn1 extends StatelessWidget {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(
-                    "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/crypto%2Fsearch%20(2).png?alt=media&token=24a918f7-3564-4290-b7e4-08ff54b3c94c",
-                    width: 20,
+                  FadeIn(
+                    child: Image.network(
+                      "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/crypto%2Fsearch%20(2).png?alt=media&token=24a918f7-3564-4290-b7e4-08ff54b3c94c",
+                      width: 20,
+                    ),
                   ),
-                  // Unicon(
-                  //   Unicons.uniGoogle,
-                  // ),
                   const SizedBox(
                     width: 10,
                   ),

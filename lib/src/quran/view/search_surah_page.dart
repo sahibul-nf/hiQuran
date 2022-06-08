@@ -23,7 +23,8 @@ class SearchQuranPage extends StatelessWidget {
     "al-waqi'ah",
     "yasin",
     "yusuf",
-    "ar-rahman"
+    "ar-rahman",
+    "al-mulk"
   ];
 
   @override

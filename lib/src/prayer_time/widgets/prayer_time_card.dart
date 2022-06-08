@@ -97,11 +97,9 @@ class PrayerTimeCard extends StatelessWidget {
         // convert negative value to positive
         if (duration.isNegative) duration = duration * -1;
 
-        /* This comment code is for testing purpose
         if (initDuration < duration) {
-          initDuration = duration - (leftOver - 7920);
+          initDuration = duration - (leftOver - 0);
         }
-        */
 
         if (initDuration > duration) initDuration = duration;
 
