@@ -60,7 +60,7 @@ class SurahController extends GetxController {
     _listOfSurah.clear();
 
     try {
-      final url = Uri.parse("https://api.quran.sutanlab.id/surah");
+      final url = Uri.parse("https://hiquran-api.herokuapp.com/surah");
       isLoading.value = true;
       final response = await http.get(url);
 
@@ -92,7 +92,9 @@ class SurahController extends GetxController {
   }
 
   Future<bool> fetchSurahByID(int? id) async {
-    final url = Uri.parse("https://api.quran.sutanlab.id/surah/$id");
+    resetVerses();
+
+    final url = Uri.parse("https://hiquran-api.herokuapp.com/surah/$id");
     // isLoading.value = true;
     final response = await http.get(url);
 

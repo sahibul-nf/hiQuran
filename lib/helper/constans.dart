@@ -1,3 +1,5 @@
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
+
 class AssetsName {
   static const baseRoute = "assets";
   // Icons
@@ -11,4 +13,11 @@ class AssetsName {
   static const illMuslimahPray = "$baseRoute$ill/03-muslimahPray.png";
   static const illMuslimGive = "$baseRoute$ill/04-muslimGive.png";
   static const illMuslimPray = "$baseRoute$ill/05-muslimPray.png";
+}
+
+class Helper {
+  static Future<void> launchURL(String url) async {
+    await url_launcher.launch(url);
+    return;
+  }
 }

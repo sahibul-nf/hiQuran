@@ -31,7 +31,7 @@ class SurahDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.resetVerses();
+    // controller.resetVerses();
 
     return Scaffold(
       appBar: AppBar(
@@ -88,34 +88,6 @@ class SurahDetailPage extends StatelessWidget {
               }
             },
           ),
-          // IconButton(
-          //   onPressed: () {
-          //     if (userC.user.id != null) {
-          //       if (controller.isFavorite(surah)) {
-          //         controller.removeFromFavorite(106, surah);
-          //       } else {
-          //         controller.addToFavorite(106, surah);
-          //       }
-          //     } else {
-          //       // Get.to(const FavoritePage(), routeName: '/favorite');
-          //       Get.dialog(ForbiddenCard(
-          //         onPressed: () {
-          //           Get.back();
-          //           Get.to(SignInPage(), routeName: '/login');
-          //         },
-          //       ));
-          //     }
-          //   },
-          //   icon: Obx(
-          //     () => FadeIn(
-          //       child: Icon(
-          //         controller.isFavorite(surah)
-          //             ? Icons.favorite
-          //             : UniconsLine.heart,
-          //       ),
-          //     ),
-          //   ),
-          // ),
           const SizedBox(width: 10),
         ],
         centerTitle: true,
@@ -142,7 +114,7 @@ class SurahDetailPage extends StatelessWidget {
                           nameTranslation: "${surah.name?.translationId}",
                           nameTransliteration: "${surah.name?.id}",
                           numberOfVerses: surah.numberOfVerses,
-                          revelation: "${surah.revelation}",
+                          revelation: "${surah.revelation?.id}",
                         ),
                         // const SizedBox(height: 10),
                         if (!snapshot.hasData) const SurahDetailPageShimmer(),

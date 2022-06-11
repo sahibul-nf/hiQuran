@@ -10,7 +10,7 @@
 // class QuranRepositoryImpl implements QuranRepository {
 //   @override
 //   Future<Surah> getSurahByID(int id) async {
-//     final url = Uri.parse("https://api.quran.sutanlab.id/surah/$id");
+//     final url = Uri.parse("https://hiquran-api.herokuapp.com/surah/$id");
 //     final response = await http.get(url);
 
 //     if (response.statusCode == 200) {
@@ -27,7 +27,7 @@
 
 //   // @override
 //   // Future<List<Surah>> fetchListOfSurah() async {
-//   //   final url = Uri.parse("https://api.quran.sutanlab.id/surah");
+//   //   final url = Uri.parse("https://hiquran-api.herokuapp.com/surah");
 //   //   final response = await http.get(url);
 
 //   //   List<Surah> listOfSurah = [];
