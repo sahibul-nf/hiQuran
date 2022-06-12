@@ -47,6 +47,7 @@ void main() async {
 
   // firebase initialize
   await Firebase.initializeApp(
+    name: 'hi-quran',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 

@@ -46,6 +46,8 @@ class HomePage extends StatelessWidget {
             prayerTimeC.getLocation().then((_) {
               prayerTimeC.cT.restart(duration: prayerTimeC.leftOver.value);
             });
+
+            articleC.loadArticleforHome();
           },
           backgroundColor: Theme.of(context).cardColor,
           color: Theme.of(context).primaryColor,
