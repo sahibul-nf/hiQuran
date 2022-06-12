@@ -12,6 +12,7 @@ import 'package:quran_app/src/articles/views/articles_page.dart';
 import 'package:quran_app/src/articles/widgets/article_card.dart';
 import 'package:quran_app/src/articles/widgets/article_card_shimmer.dart';
 import 'package:quran_app/src/home/controller/home_controller.dart';
+import 'package:quran_app/src/notifications/notification_page.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
 import 'package:quran_app/src/prayer_time/views/prayer_time_page.dart';
 import 'package:quran_app/src/prayer_time/widgets/prayer_time_card.dart';
@@ -162,39 +163,50 @@ class HomePage extends StatelessWidget {
                       //     Icons.notifications_none,
                       //   ),
                       // ),
-                      IconButton(
-                        onPressed: () {
-                          if (_settingsController.isDarkMode.value) {
-                            final box = Get.find<GetStorage>();
-                            var primaryColorName = box.read('primaryColor');
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              if (_settingsController.isDarkMode.value) {
+                                final box = Get.find<GetStorage>();
+                                var primaryColorName = box.read('primaryColor');
 
-                            if (primaryColorName != null) {
-                              _settingsController.setTheme(primaryColorName);
-                            } else {
-                              var listColor = _settingsController.listColor;
-                              var listColorName =
-                                  _settingsController.listColorName;
-                              var primaryColor =
-                                  _settingsController.primaryColor.value;
-
-                              for (var i = 0; i <= 4; i++) {
-                                if (listColor[i] == primaryColor) {
+                                if (primaryColorName != null) {
                                   _settingsController
-                                      .setTheme(listColorName[i]);
+                                      .setTheme(primaryColorName);
+                                } else {
+                                  var listColor = _settingsController.listColor;
+                                  var listColorName =
+                                      _settingsController.listColorName;
+                                  var primaryColor =
+                                      _settingsController.primaryColor.value;
+
+                                  for (var i = 0; i <= 4; i++) {
+                                    if (listColor[i] == primaryColor) {
+                                      _settingsController
+                                          .setTheme(listColorName[i]);
+                                    }
+                                  }
                                 }
+                              } else {
+                                _settingsController.setDarkMode(true);
                               }
-                            }
-                          } else {
-                            _settingsController.setDarkMode(true);
-                          }
-                        },
-                        icon: Icon(
-                          _settingsController.isDarkMode.value
-                              ? UniconsLine.moon
-                              : UniconsLine.sun,
-                          color:
-                              Theme.of(context).iconTheme.color ?? Colors.white,
-                        ),
+                            },
+                            icon: Icon(
+                              _settingsController.isDarkMode.value
+                                  ? UniconsLine.moon
+                                  : UniconsLine.sun,
+                              color: Theme.of(context).iconTheme.color ??
+                                  Colors.white,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Get.to(NotificationPage());
+                            },
+                            icon: const Icon(Icons.notifications_outlined),
+                          )
+                        ],
                       )
                     ],
                   ),
