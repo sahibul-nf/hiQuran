@@ -59,7 +59,7 @@ dependencies:
   geolocator: ^7.6.0
   get: ^4.6.1
   get_storage: ^2.0.3
-  google_fonts: ^2.3.1
+  google_fonts: ^3.0.1
   google_nav_bar: ^5.0.6
   google_sign_in: ^5.2.4
   group_button: ^5.0.0
@@ -74,7 +74,7 @@ dependencies:
   shimmer: ^2.0.0
   string_similarity: ^2.0.0
   substring_highlight: ^1.0.33
-  supabase_flutter: ^0.2.12
+  supabase_flutter: ^0.3.1+2
   unicons: ^2.1.0
   wiredash: ^0.7.0+1
 
