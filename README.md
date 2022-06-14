@@ -31,7 +31,8 @@ Semoga Allah mudahkan dan ridhai. Dan semoga saya, teman-teman yang resourcenya 
 - [x]   Dark Mode
 - [x]   Beautiful UI Theme
 - [x]   Qiblah Direction
-- [ ]   Favorite Surah
+- [x]   Favorite Surah
+- [ ]   Localization
 - [ ]   Verse Social Sharing
 - [ ]   Save latest Verse / Bookmark
 - [ ]   Hadist
