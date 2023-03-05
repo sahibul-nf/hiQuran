@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:quran_app/src/home/view/home_page.dart';
 import 'package:quran_app/src/prayer_time/views/qiblat_page.dart';
 import 'package:quran_app/src/quran/view/favorite_page.dart';
@@ -29,19 +30,21 @@ class MyApp extends StatelessWidget {
           brightness:
               settingC.isDarkMode.value ? Brightness.dark : Brightness.light,
         ),
-        child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: _navigatorKey,
-          title: 'hiQuran',
-          darkTheme: AppTheme.dark,
-          theme: AppTheme.light,
-          // home: SignInPage(),
-          home: Wrapper(),
-          // home: HomePage(),
-          // home: UploadAvatarPage(),
-          // home: MainPage(),
-          // initialRoute: "/",
-          getPages: Routes.pages,
+        child: OverlaySupport(
+          child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            navigatorKey: _navigatorKey,
+            title: 'hiQuran',
+            darkTheme: AppTheme.dark,
+            theme: AppTheme.light,
+            // home: SignInPage(),
+            home: Wrapper(),
+            // home: HomePage(),
+            // home: UploadAvatarPage(),
+            // home: MainPage(),
+            // initialRoute: "/",
+            getPages: Routes.pages,
+          ),
         ),
       ),
     );

@@ -5,7 +5,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
-import 'package:quran_app/services/notification_service.dart';
+import 'package:quran_app/src/notifications/notification_service.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_notif_controller.dart';
 import 'package:quran_app/src/prayer_time/widgets/prayer_time_card.dart';
 import 'package:quran_app/src/prayer_time/widgets/prayer_time_page_shimmer.dart';
