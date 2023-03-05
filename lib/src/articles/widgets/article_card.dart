@@ -40,10 +40,10 @@ class ArticleCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 320,
+        width: MediaQuery.of(context).size.width * 0.65,
         height: height,
         padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+          horizontal: 16,
           // vertical: 10,
         ),
         decoration: BoxDecoration(
@@ -59,7 +59,7 @@ class ArticleCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 26),
+            const SizedBox(height: 20),
             Row(
               children: [
                 ClipRRect(
@@ -109,6 +109,7 @@ class ArticleCard extends StatelessWidget {
               title,
               style: AppTextStyle.title,
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 10),
             // // const Spacer(),
@@ -131,6 +132,30 @@ class ArticleCard extends StatelessWidget {
                   // height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  errorWidget: (context, url, error) {
+                    return Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [AppShadow.card],
+                        border: Get.isDarkMode
+                            ? null
+                            : Border.all(
+                                color: Colors.grey.shade100,
+                              ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "hiQuran",
+                          style: AppTextStyle.title.copyWith(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -165,7 +190,7 @@ class ArticleCard extends StatelessWidget {
             //     ),
             //   ),
             // ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
           ],
         ),
       ),

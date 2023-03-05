@@ -47,6 +47,8 @@ class HomePage extends StatelessWidget {
             prayerTimeC.getLocation().then((_) {
               prayerTimeC.cT.restart(duration: prayerTimeC.leftOver.value);
             });
+
+            articleC.loadArticleforHome();
           },
           backgroundColor: Theme.of(context).cardColor,
           color: Theme.of(context).primaryColor,
@@ -406,7 +408,7 @@ class HomePage extends StatelessWidget {
                                       onTap: () =>
                                           Get.to(() => const ArticlesPage()),
                                       child: AppCard(
-                                        width: 150,
+                                        width: 130,
                                         hMargin: 0,
                                         child: Column(
                                           mainAxisAlignment:

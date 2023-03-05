@@ -8,7 +8,6 @@ import 'package:quran_app/src/profile/views/signin_page.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/quran/model/surah.dart';
 import 'package:quran_app/src/quran/model/verse.dart';
-import 'package:quran_app/src/quran/view/favorite_page.dart';
 import 'package:quran_app/src/quran/widget/shimmer/surah_detail_page_shimmer.dart';
 import 'package:quran_app/src/quran/widget/surah_card.dart';
 import 'package:quran_app/src/quran/widget/tafsir_view.dart';
@@ -98,9 +97,11 @@ class SurahDetailPage extends StatelessWidget {
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const AppLoading();
-          } else if (!snapshot.hasData) {
-            return const SurahDetailPageShimmer();
-          } else {
+          }
+          //  else if (!snapshot.hasData) {
+          //   return const SurahDetailPageShimmer();
+          // }
+          else {
             return Obx(() {
               return Stack(
                 children: [

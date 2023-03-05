@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:images_picker/images_picker.dart';
 import 'package:quran_app/bricks/my_widgets/my_button.dart';
 import 'package:quran_app/src/quran/controller/surah_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
@@ -20,27 +21,25 @@ class ConfirmDeleteFavorite extends StatelessWidget {
   Widget build(BuildContext context) {
     final surahC = Get.find<SurahController>();
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: Container(
-          // margin: EdgeInsets.symmetric(horizontal: hMargin, vertical: vMargin),
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 24),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [AppShadow.card],
-          ),
-          height: MediaQuery.of(context).size.height * 0.6,
-          width: MediaQuery.of(context).size.width * 0.9,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.08,
+        vertical: MediaQuery.of(context).size.height * 0.18,
+      ),
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
+        child: Padding(
+          padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                "assets/illustration/empty-state-list-1.svg",
-                width: 180,
+              Expanded(
+                child: SvgPicture.asset(
+                  "assets/illustration/empty-state-list-1.svg",
+                  width: 180,
+                ),
               ),
-              const SizedBox(height: 30),
               Text(
                 message,
                 style: AppTextStyle.title.copyWith(
