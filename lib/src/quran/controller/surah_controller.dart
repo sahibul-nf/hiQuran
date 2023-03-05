@@ -8,6 +8,9 @@ import 'package:quran_app/src/quran/model/verse.dart';
 import 'package:quran_app/src/quran/repository/surah_favorite_repository.dart';
 import 'package:string_similarity/string_similarity.dart';
 
+// API URL
+const baseUrl = "https://quran-api-production-c51f.up.railway.app";
+
 class SurahController extends GetxController {
   final _listOfSurah = <Surah>{}.obs;
   Set<Surah> get listOfSurah => _listOfSurah();
@@ -60,7 +63,7 @@ class SurahController extends GetxController {
     _listOfSurah.clear();
 
     try {
-      final url = Uri.parse("https://hiquran-api.herokuapp.com/surah");
+      final url = Uri.parse("$baseUrl/surah");
       isLoading.value = true;
       final response = await http.get(url);
 
@@ -94,7 +97,7 @@ class SurahController extends GetxController {
   Future<bool> fetchSurahByID(int? id) async {
     resetVerses();
 
-    final url = Uri.parse("https://hiquran-api.herokuapp.com/surah/$id");
+    final url = Uri.parse("$baseUrl/surah/$id");
     // isLoading.value = true;
     final response = await http.get(url);
 

@@ -132,6 +132,30 @@ class ArticleCard extends StatelessWidget {
                   // height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  errorWidget: (context, url, error) {
+                    return Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [AppShadow.card],
+                        border: Get.isDarkMode
+                            ? null
+                            : Border.all(
+                                color: Colors.grey.shade100,
+                              ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "hiQuran",
+                          style: AppTextStyle.title.copyWith(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
