@@ -45,5 +45,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-upload-keystore.jks
+!gradle-wrapper.jar
+
+*.jks
 # *.env
