@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:quran_app/src/articles/repositories/article_repository.dart';
 
-import '../entities/Article.dart';
+import '../entities/article.dart';
 
 const rssFeeds = <String, String>{
   "mutiaraIslam": "https://mutiaraislam.net/feed/",
