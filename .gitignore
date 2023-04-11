@@ -48,4 +48,4 @@ app.*.map.json
 !gradle-wrapper.jar
 
 *.jks
-# *.env
+*.env

@@ -96,5 +96,7 @@
 		<string>$(PRODUCT_NAME) needs access to location when open and in the background.</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>
