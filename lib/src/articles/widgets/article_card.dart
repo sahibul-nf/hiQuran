@@ -14,9 +14,11 @@ class ArticleCard extends StatelessWidget {
     required this.author,
     required this.onTap,
     this.height,
+    required this.website,
   }) : super(key: key);
 
   final String logoUrl;
+  final String website;
   final String title;
   final String pubDate;
   final String thumbnailUrl;
@@ -65,7 +67,10 @@ class ArticleCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(36),
                   child: logoUrl == ""
-                      ? Image.asset("assets/icon/icon.png")
+                      ? Image.asset(
+                          "assets/icon/icon.png",
+                          width: 30,
+                        )
                       : CachedNetworkImage(
                           errorWidget: (context, url, error) =>
                               Image.asset("assets/icon/icon.png"),
@@ -76,10 +81,12 @@ class ArticleCard extends StatelessWidget {
                         ),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  author,
-                  style: AppTextStyle.small,
-                  overflow: TextOverflow.ellipsis,
+                Expanded(
+                  child: Text(
+                    author,
+                    style: AppTextStyle.normal,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 (isNew) ? const Spacer() : const SizedBox(),
                 (isNew)
@@ -104,20 +111,14 @@ class ArticleCard extends StatelessWidget {
                     : const SizedBox()
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             Text(
               title,
               style: AppTextStyle.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 10),
-            // // const Spacer(),
-            // Text(
-            //   pubDate,
-            //   style: AppTextStyle.small,
-            // ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
@@ -159,10 +160,9 @@ class ArticleCard extends StatelessWidget {
                 ),
               ),
             ),
-            // const SizedBox(height: 16),
             // Container(
             //   decoration: BoxDecoration(
-            //     color: Theme.of(context).primaryColor.withOpacity(0.1),
+            //     // color: Theme.of(context).primaryColor.withOpacity(0.1),
             //     borderRadius: BorderRadius.circular(15),
             //     boxShadow: [AppShadow.card],
             //     border: Border.all(
@@ -175,16 +175,17 @@ class ArticleCard extends StatelessWidget {
             //     child: Row(
             //       mainAxisAlignment: MainAxisAlignment.center,
             //       children: [
-            //         Icon(
-            //           Icons.link,
-            //           color: Theme.of(context).primaryColor,
-            //         ),
-            //         const SizedBox(width: 4),
             //         Text(
-            //           "Read More",
+            //           "Read post",
             //           style: AppTextStyle.normal.copyWith(
             //             color: Theme.of(context).primaryColor,
             //           ),
+            //         ),
+            //         const SizedBox(width: 8),
+            //         Icon(
+            //           Icons.open_in_new_rounded,
+            //           size: 16,
+            //           color: Theme.of(context).primaryColor,
             //         ),
             //       ],
             //     ),

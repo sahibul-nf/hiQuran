@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:quran_app/src/prayer_time/controllers/prayer_time_controller.dart';
 import 'package:quran_app/src/settings/theme/app_theme.dart';
 import 'package:quran_app/src/widgets/app_loading.dart';
+import 'package:unicons/unicons.dart';
 
 class QiblatPage extends StatelessWidget {
   QiblatPage({Key? key}) : super(key: key);
@@ -27,16 +28,7 @@ class QiblatPage extends StatelessWidget {
         centerTitle: true,
         elevation: 1,
       ),
-      body:
-          // FutureBuilder(
-          //     future: _prayerTimeC.checkDeviceSensorSupport(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //         return const AppLoading();
-          //       }
-
-          // return
-          Obx(
+      body: Obx(
         () => !_prayerTimeC.isQiblahLoaded.value
             ? const AppLoading()
             : (_prayerTimeC.sensorIsSupported.value)
@@ -55,7 +47,6 @@ class QiblatPage extends StatelessWidget {
 
                       double qiblah =
                           ((qiblahDirection?.qiblah ?? 0) * (pi / 180) * -1);
-                      // String offset = qiblahDirection!.offset.toStringAsFixed(2);
 
                       return SizedBox(
                         height: MediaQuery.of(context).size.height,
@@ -63,16 +54,34 @@ class QiblatPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // const SizedBox(height: 70),
                             Obx(
-                              () => Text(
-                                // "Qiblah\n"
-                                "🎯\n"
-                                "${_prayerTimeC.qiblahDirection.value.toStringAsFixed(0)}°",
-                                style: AppTextStyle.bigTitle.copyWith(
-                                  fontSize: 24,
-                                ),
-                                textAlign: TextAlign.center,
+                              () => Column(
+                                children: [
+                                  Text(
+                                    // "🎯\n"
+                                    "${_prayerTimeC.qiblahDirection.value.toStringAsFixed(0)}°",
+                                    style: AppTextStyle.bigTitle.copyWith(
+                                      fontSize: 24,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        UniconsLine.location_arrow,
+                                        color: Theme.of(context).primaryColor,
+                                        size: 16,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "${_prayerTimeC.currentAddress.value.locality}",
+                                        style: AppTextStyle.small,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                             const SizedBox(height: 70),
@@ -170,7 +179,6 @@ class QiblatPage extends StatelessWidget {
                     child: Text("This platform is not supported"),
                   ),
       ),
-      // }),
     );
   }
 }

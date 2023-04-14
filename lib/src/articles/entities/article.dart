@@ -2,6 +2,7 @@ class Article {
   String? title;
   String? link;
   String? logo;
+  String? website;
   String? author;
   String? thumbnail;
   String? datePublished;
@@ -9,6 +10,7 @@ class Article {
 
   Article({
     required this.logo,
+    required this.website,
     this.title,
     this.link,
     this.author,

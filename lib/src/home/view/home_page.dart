@@ -1,9 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:images_picker/images_picker.dart';
 import 'package:quran_app/bricks/my_widgets/dotted_loading_indicator.dart';
 import 'package:quran_app/bricks/my_widgets/notebook_icon.dart';
 import 'package:quran_app/helper/constans.dart';
@@ -94,7 +92,8 @@ class HomePage extends StatelessWidget {
                                                       _settingsController
                                                               .isDarkMode.value
                                                           ? Theme.of(context)
-                                                              .backgroundColor
+                                                              .colorScheme
+                                                              .background
                                                               .withOpacity(0.3)
                                                           : Theme.of(context)
                                                               .primaryColor
@@ -103,7 +102,8 @@ class HomePage extends StatelessWidget {
                                                       _settingsController
                                                               .isDarkMode.value
                                                           ? Theme.of(context)
-                                                              .backgroundColor
+                                                              .colorScheme
+                                                              .background
                                                           : Theme.of(context)
                                                               .primaryColor,
                                                   numDots: 7,
@@ -371,6 +371,9 @@ class HomePage extends StatelessWidget {
                                       logoUrl: articleC.articlesAtHome
                                           .toList()[i]
                                           .logo!,
+                                      website: articleC.articlesAtHome
+                                          .toList()[i]
+                                          .website!,
                                       title: articleC.articlesAtHome
                                           .toList()[i]
                                           .title!,
