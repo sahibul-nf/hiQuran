@@ -292,7 +292,7 @@ SPEC CHECKSUMS:
   flutter_qiblah: f69eeb708d127a2634073ab1f27771c979928f50
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
-  geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
+  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   google_sign_in_ios: 1256ff9d941db546373826966720b0c24804bcdd
   GoogleDataTransport: 8378d1fa8ac49753ea6ce70d65a7cb70ce5f66e6
   GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
@@ -318,4 +318,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cbb95c495990b3aba49f938e1277ebd49812dba5
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

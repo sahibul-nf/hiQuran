@@ -56,7 +56,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   flutter_svg: ^1.0.3
   geocoding: ^2.0.4
-  geolocator: ^7.6.0
+  geolocator: ^9.0.2
   get: ^4.6.1
   get_storage: ^2.0.3
   google_fonts: ^3.0.1
